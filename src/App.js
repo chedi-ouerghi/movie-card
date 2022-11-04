@@ -3,6 +3,8 @@ import React, { useState} from "react";
 import MovieList from './components/MovieList'
 import Add from './components/Add';
 import NavBar from './components/NavBar';
+import { Route, Routes } from 'react-router-dom';
+import Descriptions from './components/Descriptions';
 
 function App() {
 
@@ -126,24 +128,26 @@ function App() {
   
     }  
 
-  ]);
+  ]); 
   const addMovie = (newMovie) => {
     setMovies([...movies, newMovie]);
   };
   
   return (
-    <div> 
-     <div style={{display:'grid',justifyContent:"stretch"}}>
+    <div className='App'  style={{display:'grid',justifyContent:"stretch",backgroundColor:'grey'}}> 
+     <div>
       <NavBar setsearchTitle={setsearchTitle} setsearchRate={setsearchRate} />
-    <Add addMovie={addMovie} />
+     <Add addMovie={addMovie} />
     </div>
-    <MovieList
+<Routes>
+    <Route path='/' element={<MovieList
         movies={movies}
         searchTitle={searchTitle}
         searchRate={searchRate}
-        
-      />
-    </div>
+        />}/>
+        <Route path='Descriptions/:id' element={<Descriptions  movies={movies}/>}  />
+        </Routes>
+        </div>
   );
 }
 
