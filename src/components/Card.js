@@ -2,7 +2,7 @@ import React from 'react';
 import { Button } from 'react-bootstrap';
 import Card from 'react-bootstrap/Card';
 import ReactStars from 'react-rating-stars-component';
-import { Link } from 'react-router-dom';
+import { Link, link } from 'react-router-dom';
 
 
 const ratingChanged = (newRating) => {
@@ -34,9 +34,9 @@ function MovieCard({movie}) {
  <Link to={`/Descriptions/${movie.id}`}>
   <Button>Description</Button>
   </Link>
-  <a >
+  <Link >
      <Button variant='danger' >ShowUrl</Button>
-     </a>
+     </Link>
     </Card.Body>
    </Card>
    

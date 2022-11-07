@@ -11,15 +11,14 @@ function App() {
   const [searchTitle, setsearchTitle] = useState("");
   const [searchRate, setsearchRate] = useState(1);
   const [movies,setMovies ]=useState([
-    {
+      {
       title: "Titanic",
       description:
         "Seventeen-year-old Rose hails from an aristocratic family and is set to be married. When she boards the Titanic.",
       posterUrl:
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhYjUIu2o5v5u3rfJpCq5Cz0Q9WK--XdYxai_N2d0ImohPiIOp",
       rate: 4,
-      trailer:"https://www.youtube.com/embed/kVrqfYjkTdQ",
-     
+        link: <iframe width="560" height="315" src="https://www.youtube.com/embed/kVrqfYjkTdQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>,
       id:1
     },
     {
@@ -29,7 +28,7 @@ function App() {
       posterUrl:
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkmMH-bEDUS2TmK8amBqgIMgrfzN1_mImChPuMrunA1XjNTSKm",
       rate: 3,
-      trailer:"https://www.youtube.com/embed/6hB3S9bIaco",
+      link: <iframe width="560" height="315" src="https://www.youtube.com/embed/6hB3S9bIaco" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>,
       id:2
   
     },
@@ -40,8 +39,7 @@ function App() {
       posterUrl:
         "https://m.media-amazon.com/images/M/MV5BM2MyNjYxNmUtYTAwNi00MTYxLWJmNWYtYzZlODY3ZTk3OTFlXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_UY1200_CR107,0,630,1200_AL_.jpg",
       rate: 5,
-      trailer:"https://www.youtube.com/embed/UaVTIH8mujA",
-     
+      link: <iframe width="560" height="315" src="https://www.youtube.com/embed/UaVTIH8mujA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>,
       id:3
   
     },
@@ -52,8 +50,7 @@ function App() {
       posterUrl:
         "https://m.media-amazon.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_.jpg",
       rate: 2,
-      trailer:"https://www.youtube.com/embed/EXeTwQWrcwY",
-     
+     link: <iframe width="560" height="315" src="https://www.youtube.com/embed/EXeTwQWrcwY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>,
       id:4
     },
     {
@@ -63,8 +60,7 @@ function App() {
       posterUrl:
         "https://upload.wikimedia.org/wikipedia/commons/b/b5/12_Angry_Men_%281957_film_poster%29.jpg",
       rate: 1,
-      trailer:"https://www.youtube.com/embed/13J_9B5jEk",
-    
+      link: <iframe width="560" height="315" src="https://www.youtube.com/embed/_13J_9B5jEk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>,
       id:5
   
     },
@@ -75,8 +71,7 @@ function App() {
       posterUrl:
         "https://m.media-amazon.com/images/M/MV5BNDE4OTMxMTctNmRhYy00NWE2LTg3YzItYTk3M2UwOTU5Njg4XkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_.jpg",
       rate: 5,
-      trailer:"https://www.youtube.com/embed/gG22XNhtnoY",
-     
+     link: <iframe width="560" height="315" src="https://www.youtube.com/embed/gG22XNhtnoY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>,
       id:6
   
     },
@@ -86,8 +81,7 @@ function App() {
         "The lives of two mob hitmen, a boxer, a gangster and his wife, and a pair of diner bandits intertwine in four tales.",
       posterUrl: "https://www.miramax.com/media/assets/Pulp-Fiction1.png",
       rate: 5,
-      trailer:"https://www.youtube.com/embed/s7EdQ4FqbhY",
-     
+     link: <iframe width="560" height="315" src="https://www.youtube.com/embed/s7EdQ4FqbhY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>,
       id:7
   
     },
@@ -98,8 +92,7 @@ function App() {
       posterUrl:
         "https://upload.wikimedia.org/wikipedia/en/b/be/The_Lord_of_the_Rings_-_The_Return_of_the_King_%282003%29.jpg",
       rate: 5,
-      trailer:"https://www.youtube.com/embed/r5X-hFf6Bwo",
-     
+     link: <iframe width="560" height="315" src="https://www.youtube.com/embed/r5X-hFf6Bwo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>,
       id:8
   
     },
@@ -110,8 +103,7 @@ function App() {
       posterUrl:
         "https://cdn.hmv.com/r/w-1280/hmv/files/33/3385d6d7-570c-4baa-b344-552f9b6147f5.jpg",
       rate: 4,
-      trailer:"https://www.youtube.com/embed/WCN5JJY_wiA",
-     
+     link: <iframe width="560" height="315" src="https://www.youtube.com/embed/WCN5JJY_wiA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>,
       id:9
   
     },
@@ -122,12 +114,10 @@ function App() {
       posterUrl:
         "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQNgTszE1phYg2G7H4RrgeSEssOw-Kpnh0Si-sF5pVQQrBXJ_6e",
       rate: 3,
-      trailer:"https://www.youtube.com/embed/O1nDozs-LxI",
-      
+      link: <iframe width="560" height="315" src="https://www.youtube.com/embed/qtRKdVHc-cE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>,
       id:10
   
     }  
-
   ]); 
   const addMovie = (newMovie) => {
     setMovies([...movies, newMovie]);

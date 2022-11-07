@@ -14,6 +14,7 @@ console.log(movie)
     <Card.Img variant="top" src={movie.posterUrl} alt='photo'style={{ width: '20rem' }} />
     <Card.Body>
     <ListGroup.Item><h1>#️⃣{movie.id}</h1></ListGroup.Item>
+    <Card.Link href="#"><h1><button>{movie.link}</button></h1></Card.Link>
 
       <Card.Title><h1>🎞️{movie.title}</h1></Card.Title>
       <Card.Text>
@@ -26,7 +27,6 @@ console.log(movie)
     </ListGroup>
     <Card.Body>
       <Card.Link href="#"><h1><button>{movie.posterUrl}</button></h1></Card.Link>
-      <Card.Link href="#"><h1><button>{movie.trailer}</button></h1></Card.Link>
     </Card.Body>
   </Card>
     
