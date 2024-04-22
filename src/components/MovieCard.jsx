@@ -15,37 +15,35 @@ const MovieCard = ({ movie }) => {
   };
 
   const isValidLink = movie.id ? true : false;
-  console.log(`Link is ${isValidLink ? 'valid' : 'invalid'}`);
 
   return (
     <div className="movie-card">
-      <div className="card-img-top">
-        <img src={movie.image} alt={movie.title} />
-      </div>
-      <div className="card-body">
-        <div className="card-title">{movie.title}</div>
-        <div className="card-text">{truncatedDescription}</div>
-        <div className="card-director">
-          <strong>Director:</strong> {movie.director}
-        </div>
-        <div className="card-stars">
-          <strong>Stars:</strong> {movie.stars.join(', ')}
-        </div>
-        <div className="card-footer">
+      <div className="card-img">
+        <img src={movie.image} alt={movie.title}
+          className="blur-image"
+        />
+        <div className="card-overlay">
+          <div className="card-title">{movie.title}</div>
+          <div className="card-director">
+            <strong>Director:</strong> {movie.director}
+          </div>
+  <div className="card-Acteurs">
+            <strong>Acteurs:</strong> {movie.stars.join(', ')}
+          </div>
+          <div className="card-text"><strong>Description</strong> :{truncatedDescription}</div>
           <ReactStars
             count={5}
-            value={movie.rating} // Set value to movie's rating
+            value={movie.rating}
             onChange={ratingChanged}
             size={24}
-            activeColor="#ffd700" // Yellow color for active stars
+            activeColor="#ffd700"
             edit={false}
             half={false}
             classNames="rs-stars"
           />
-
           {isValidLink && (
-            <Link to={`/movie/${movie.id}`} className='view_movie'>
-              view movie
+            <Link to={`/movie/${movie.id}`} className="view_movie">
+              View movie
             </Link>
           )}
         </div>
@@ -53,5 +51,6 @@ const MovieCard = ({ movie }) => {
     </div>
   );
 };
+
 
 export default MovieCard;

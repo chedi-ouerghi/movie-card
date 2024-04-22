@@ -28,7 +28,26 @@ const MovieDetail = () => {
   };
 
   return (
-  <div className="movie_card" id="tomb">
+    <div className="MovieDetails" >
+              <div className="lines">
+        <div className="line">
+          <div className="circle"></div>
+          <div className="circle"></div>
+        </div>
+        <div className="line">
+          <div className="circle"></div>
+          <div className="circle"></div>
+        </div>
+        <div className="line">
+          <div className="circle"></div>
+          <div className="circle"></div>
+        </div>
+        <div className='vertical_line' />
+      </div>
+
+      <button></button>
+          <div className="movie_card" id="tomb">
+
     <div className="info_section">
       <div className="movie_header">
         <img className="locandina" src={movie.image} alt={movie.title} />
@@ -56,6 +75,7 @@ const MovieDetail = () => {
        
     </div>
       <div className="blur_back" style={{ backgroundImage: `url(${movie.image})` }}/>
+      </div>
       </div>
 );
 
