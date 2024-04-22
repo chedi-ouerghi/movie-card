@@ -1,49 +1,160 @@
-.App {
+.movie-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+}
+
+/* card  */
+.movie-card {
+    width: calc(20% - 49px);
+    height: 64vh;
+    border: 1px solid #e1e4e8;
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    font-size: 20px;
-  }
-  
-  .App-logo {
-    height: 40vmin;
-    pointer-events: none;
-  }
-  
-  @media (prefers-reduced-motion: no-preference) {
-    .App-logo {
-      animation: App-logo-spin infinite 20s linear;
-    }
-  }
-  
-  .App-header {
-    background-color: #282c34;
-    min-height: 100vh;
+}
+
+.movie-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.movie-card:focus,
+.movie-card:active {
+  outline: none;
+  transform: translateY(-5px);
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-img-top img {
+  width: 100%;
+  height: 20vh; /* Hauteur de l'image */
+  object-fit: cover;
+}
+
+.movie-card .card-body {
+    flex-grow: 1;
+    padding: 10px;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
+    justify-content: space-between;
+    height: 60%;
+}
+
+.movie-card .card-title {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.movie-card .card-text {
+  color: #666;
+  margin-bottom: 1rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1; /* Afficher seulement une ligne */
+  -webkit-box-orient: vertical;
+  line-height: 1.2; /* Espacement entre les lignes */
+}
+
+.movie-card .card-director,
+.movie-card .card-stars {
+  margin-top: 10px;
+}
+
+.card-footer{
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+}
+
+.view_movie{
+  border: none ;
+  transition: box-shadow 0.3s ease-in-out;
+
+}
+.view_movie:hover{
+  background: #000;
+  color: #fff;
+    box-shadow: 0px 0px 10px rgba(0, 123, 255, 0.5);
+
+
+}
+.movie-card .rs-stars {
+  margin-top: 10px;
+}
+
+@media (max-width: 768px) {
+  .movie-card {
+    width: 100%;
+    margin: 10px 0;
   }
-  
-  .App-link {
-    color: #61dafb;
+}
+/* navbar */
+.navbar {
+  background-color: #343a40;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  width: 100%;
+}
+
+.navbar-brand {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-right: auto; /* Étire le brand à gauche */
+}
+
+.navbar-links {
+  display: flex;
+  gap: 20px; /* Espacement entre les éléments */
+}
+
+.navbar-links .nav-link {
+  cursor: pointer;
+  transition: color 0.3s ease-in-out;
+}
+
+.navbar-links .nav-link:hover {
+  color: #007bff;
+}
+
+.search-form {
+  flex-grow: 1;
+  max-width: 300px; /* Limite la largeur de la recherche */
+  margin-left: 20px;
+}
+
+.search-input {
+  width: 100%;
+  padding: 0.5rem;
+  border-radius: 20px;
+  border: none;
+  outline: none;
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column; /* Pile les éléments verticalement */
+    align-items: flex-start; /* Alignement à gauche */
   }
-  
-  @keyframes App-logo-spin {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
+
+  .navbar-links {
+    margin-top: 20px;
   }
-  
-  .NavDropdown{
-    color: aliceblue;
+
+  .search-form {
+    margin-left: 0;
+    margin-top: 20px;
   }
-  
- 
+}
+
