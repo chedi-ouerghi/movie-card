@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import anime from 'animejs';
+import './notfound.css'
 
 const NotFound = ({ message }) => {
 
@@ -31,7 +32,8 @@ const NotFound = ({ message }) => {
   }, []);
   
 
-    return (
+  return (
+      <div className='notfound_page'>
       <div className='notfound-div'>
       <div className="col-sm-12 col-md-12 mt-5 mb-5">
         <svg
@@ -1204,7 +1206,8 @@ const NotFound = ({ message }) => {
           </defs>
         </svg>
       </div>
-</div>
+      </div>
+      </div>
   );
 };
 
