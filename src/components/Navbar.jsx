@@ -1,61 +1,67 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import './Navbar.css';
+import { FaUser } from 'react-icons/fa';
 import ReactStars from 'react-rating-stars-component';
-import { Link } from 'react-router-dom'; // Importez Link d'ici
+import { Link } from 'react-router-dom';
 
 const Navbar = ({ handleSearch, handleRatingFilter }) => {
-  const [isCollapsed, setIsCollapsed] = useState(true);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
 
-  const toggleCollapse = () => {
-    setIsCollapsed(!isCollapsed);
+
+  const toggleMobileMenu = () => {
+  setIsMobileMenuOpen(!isMobileMenuOpen);
+};
+
+const toggleUserMenu = () => {
+  setIsUserMenuOpen(!isUserMenuOpen);
   };
+  
 
-  useEffect(() => {
-    const navbarToggle = document.querySelector(".navbar-toggle");
-    const navbarLinks = document.querySelector(".navbar-links");
-
-    navbarToggle.addEventListener("click", () => {
-      navbarLinks.classList.toggle("show");
-    });
-
-    return () => {
-      navbarToggle.removeEventListener("click", () => {
-        navbarLinks.classList.toggle("show");
-      });
-    };
-  }, []);
 
   const ratingChanged = (newRating) => {
-    handleRatingFilter(newRating);
+    handleRatingFilter(newRating); 
   };
 
   return (
-    <div className="navbar">
-      {/* Utilisez Link pour envelopper navbar-brand */}
-      <Link to="/" className="navbar-brand">Movie App</Link>
-      <div className="navbar-toggle" onClick={toggleCollapse}>
-        <i className="fas fa-bars"></i>
+    <nav>
+  <Link to="/" className="logo-link" style={{textDecoration:'none'}}>
+        <p className="logo">MOVIE WEB</p>
+      </Link>
+
+      <div className={`links ${isMobileMenuOpen ? 'show' : ''}`}>
+        <div className="search-rating">
+          <div className='input_rating-section'>
+            <input
+              type="text"
+              placeholder="Search"
+              className="search-input"
+              onChange={(e) => handleSearch(e.target.value)}
+            />
+            <ReactStars
+              count={5}
+              onChange={ratingChanged}
+              size={24}
+              activeColor="#ffd700"
+              classNames="rs-stars"
+            />
+          </div>
+        <div className="user-menu">
+        <FaUser className="user-icon" onClick={toggleUserMenu} />
+        {isUserMenuOpen && (
+          <div className="user-dropdown">
+            <Link to="/login" className="user-option">Login</Link>
+            <Link to="/register" className="user-option">Register</Link>
+          </div>
+        )}
       </div>
-      <div className={`navbar-links ${isCollapsed ? 'collapsed' : 'show'}`}>
-        <div className="nav-link">Home</div>
+        </div>
       </div>
-      <div className="search-form">
-        <input
-          type="text"
-          placeholder="Search"
-          className="search-input"
-          onChange={(e) => handleSearch(e.target.value)}
-        />
-      </div>
-      <div className="rating-filter">
-        <ReactStars
-          count={5}
-          onChange={ratingChanged}
-          size={24}
-          activeColor="#ffd700"
-          classNames="rs-stars"
-        />
-      </div>
+
+    <div className="menu" onClick={toggleMobileMenu}>
+      <div className={`middle ${isMobileMenuOpen ? 'close' : ''}`}></div>
     </div>
+    </nav>
   );
 };
 

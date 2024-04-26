@@ -14,23 +14,26 @@ const MovieCard = ({ movie }) => {
     console.log(newRating);
   };
 
-  const isValidLink = movie.id ? true : false;
+  const starsArray = movie.stars ? movie.stars.split(',') : [];
 
   return (
     <div className="movie-card">
       <div className="card-img">
-        <img src={movie.image} alt={movie.title}
-          className="blur-image"
-        />
+        <img src="/image.jpg" alt={movie.title} className="blur-image" />
         <div className="card-overlay">
           <div className="card-title">{movie.title}</div>
           <div className="card-director">
             <strong>Director:</strong> {movie.director}
           </div>
-  <div className="card-Acteurs">
-            <strong>Acteurs:</strong> {movie.stars.join(', ')}
+          <div className="card-Acteurs">
+            <strong>Acteurs:</strong> {starsArray.join(', ')}
           </div>
-          <div className="card-text"><strong>Description</strong> :{truncatedDescription}</div>
+          <div className="card-text">
+            <strong>Description:</strong> {truncatedDescription}
+          </div>
+          {/* <div className="card-trailer">
+            <strong>Trailer:</strong> <a href={movie.trailer} target="_blank" rel="noopener noreferrer">Watch Trailer</a>
+          </div> */}
           <ReactStars
             count={5}
             value={movie.rating}
@@ -41,7 +44,7 @@ const MovieCard = ({ movie }) => {
             half={false}
             classNames="rs-stars"
           />
-          {isValidLink && (
+          {movie.id && (
             <Link to={`/movie/${movie.id}`} className="view_movie">
               View movie
             </Link>
@@ -51,6 +54,5 @@ const MovieCard = ({ movie }) => {
     </div>
   );
 };
-
 
 export default MovieCard;
