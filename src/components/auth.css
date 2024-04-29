@@ -10,10 +10,10 @@ body{
     background-color: #080710;
 }
 .background{
-    width: 31%;
-    height: 52vh;
+    width: 25%;
+    height: 57vh;
     position: absolute;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -51%);
     left: 49%;
     top: 55%;
 }
@@ -25,26 +25,19 @@ body{
     border-radius: 50%;
 }
 .shape:first-child{
-    background: linear-gradient(
-        #1845ad,
-        #23a2f6
-    );
-    left: -80px;
-    top: -80px;
+background: linear-gradient(#1845ad, #23a2f6);
+    left: -30px;
+    top: -44px;
 }
 .shape:last-child{
-    background: linear-gradient(
-        to right,
-        #ff512f,
-        #f09819
-    );
-    right: -30px;
+    background: linear-gradient(to right, #ff512f, #f09819);
+    right: -15px;
     bottom: -80px;
 }
 form{
 height: 60vh;
     width: 25%;
-    background-color: rgba(255, 255, 255, 0.13);
+    background-color: rgb(163 163 163 / 42%);
     position: absolute;
     transform: translate(-50%, -50%);
     top: 55%;
@@ -140,23 +133,23 @@ button{
 
 
 #register-form {
-  height: 70vh;
-  width: 25%;
-  background-color: rgba(255, 255, 255, 0.13);
-  position: absolute;
-  transform: translate(-50%, -50%);
-  top: 55%;
-  left: 49%;
-  border-radius: 10px;
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
-  border: 2px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
-  padding: 23px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+    height: 70vh;
+    width: 25%;
+    background-color: rgb(163 163 163 / 42%);
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 55%;
+    left: 49%;
+    border-radius: 10px;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
+    padding: 23px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 #div1_form_register {
@@ -214,14 +207,15 @@ button{
 
     .App{
                 background-size: 400% 100%;
-        height: 69vh;
+        height: 86vh;
         overflow: hidden;
     }
     .background {
-width: 73%;
+        width: 73%;
         height: 49vh;
-        top: 62%;
-        left: 54%;
+        top: 45%;
+        left: 49%;
+        position: relative;
     }
 
     .background .shape {
@@ -233,14 +227,16 @@ width: 73%;
         height: auto;
         width: 80%;
         padding: 15px;
-        top: 60%;
+        top: -10%;
+        position: relative;
     }
 
     #register-form {
         height: 62%;
         width: 85%;
         padding: 15px;
-        top: 59%;
+        top: -11%;
+        position: relative;
     }
 
     #div1_form_register {

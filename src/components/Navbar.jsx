@@ -1,44 +1,58 @@
 import React, { useState } from 'react';
-import './Navbar.css';
-import { FaUser } from 'react-icons/fa';
 import ReactStars from 'react-rating-stars-component';
 import { Link } from 'react-router-dom';
+import './Navbar.css';
 
 const Navbar = ({ handleSearch, handleRatingFilter }) => {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
-
-
-  const toggleMobileMenu = () => {
-  setIsMobileMenuOpen(!isMobileMenuOpen);
-};
-
-const toggleUserMenu = () => {
-  setIsUserMenuOpen(!isUserMenuOpen);
-  };
-  
-
+  const [isChecked, setIsChecked] = useState(false);
+  const [isFieldsVisible, setIsFieldsVisible] = useState(false);
 
   const ratingChanged = (newRating) => {
-    handleRatingFilter(newRating); 
+    handleRatingFilter(newRating);
+  };
+
+  const handleSearchInputChange = (e) => {
+    handleSearch(e.target.value);
+  };
+
+  const closeNavbar = () => {
+    setIsChecked(false);
+    setIsFieldsVisible(false);
+  };
+
+  const handleCheckboxChange = () => {
+    setIsChecked(!isChecked);
+    setIsFieldsVisible(!isFieldsVisible);
   };
 
   return (
-    <nav>
-  <Link to="/" className="logo-link" style={{textDecoration:'none'}}>
-        <p className="logo">MOVIE WEB</p>
-      </Link>
+    <div className="nav">
+      <input type="checkbox" id="nav-check" checked={isChecked} onChange={handleCheckboxChange} />
+      <div className="nav-header">
+        <Link to='/' onClick={closeNavbar}>
+          <div className="nav-title">
+            JoGeek
+          </div>
+        </Link>
+      </div>
+      <div className="nav-btn">
+        <label htmlFor="nav-check">
+          <span></span>
+          <span></span>
+          <span></span>
+        </label>
+      </div>
+      <div className="nav-links">
+        {/* {isFieldsVisible && ( */}
+          <div className="group" >
 
-      <div className={`links ${isMobileMenuOpen ? 'show' : ''}`}>
-        <div className="search-rating">
-          <div className='input_rating-section'>
             <input
               type="text"
               placeholder="Search"
               className="search-input"
-              onChange={(e) => handleSearch(e.target.value)}
-            />
-            <ReactStars
+              onChange={handleSearchInputChange}
+          />
+                      <ReactStars
               count={5}
               onChange={ratingChanged}
               size={24}
@@ -46,23 +60,14 @@ const toggleUserMenu = () => {
               classNames="rs-stars"
             />
           </div>
-        <div className="user-menu">
-        <FaUser className="user-icon" onClick={toggleUserMenu} />
-        {isUserMenuOpen && (
-          <div className="user-dropdown">
-            <Link to="/login" className="user-option">Login</Link>
-            <Link to="/register" className="user-option">Register</Link>
-          </div>
-        )}
-      </div>
+        {/* )} */}
+        <div  className='buttons-user-group'>
+          <Link to="/login" className="user-button" onClick={closeNavbar}>Login</Link>
+          <Link to="/register" className="user-button" onClick={closeNavbar}>Register</Link>
         </div>
       </div>
-
-    <div className="menu" onClick={toggleMobileMenu}>
-      <div className={`middle ${isMobileMenuOpen ? 'close' : ''}`}></div>
     </div>
-    </nav>
   );
-};
+}
 
 export default Navbar;
