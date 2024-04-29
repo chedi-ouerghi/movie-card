@@ -1,197 +1,127 @@
-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem;
-  background-color: #333;
+* {
+  box-sizing: border-box;
 }
 
-.logo {
-  font-size: 1.5rem;
-  color: #fff;
+body {
+  margin: 0px;
+  font-family: 'segoe ui';
 }
 
-.links {
-  display: flex;
-  align-items: center;
-}
-
-.search-rating {
-  display: flex;
-  align-items: center;
-}
-
-.search-input {
-  margin-right: 1rem;
-  padding: 0.5rem;
-}
-
-.rs-stars {
-  margin-left: 1rem;
-}
-
-.user-menu {
+.nav {
+  height: auto; /* Au lieu de 7vh */
+  min-height: 7vh; /* Pour garantir une hauteur minimale */
+  width: 100%;
+  background-color: #4d4d4d;
   position: relative;
-}
-
-.user-dropdown {
-  position: absolute;
-  top: 100%;
-  right: 0;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  z-index: 10;
-}
-
-.user-option {
-  padding: 0.5rem;
-  cursor: pointer;
-}
-
-.menu {
-  display: none; /* Hide menu by default for desktop */
-  cursor: pointer;
-}
-
-.middle {
-  width: 25px;
-  height: 3px;
-  background-color: #fff;
-  transition: all 0.3s;
-}
-
-.middle.close {
-  transform: rotate(-45deg);
-}
-nav {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 1rem;
-  background-color: #333;
+  justify-content: space-between;
+  align-content: center;
 }
 
-.logo {
-  font-size: 1.5rem;
+
+
+
+.nav > .nav-header {
+  display: inline;
+}
+
+.nav > .nav-header > .nav-title {
+  display: inline-block;
+  font-size: 22px;
   color: #fff;
+  padding: 10px 10px 10px 10px;
 }
 
-.links {
-  display: flex;
-  align-items: center;
+.nav > .nav-btn {
+  display: none;
 }
 
-.search-rating {
+.nav > .nav-links {
     display: flex;
+    font-size: 18px;
+    width: 30%;
+    justify-content: space-around;
     align-items: center;
-    width: 27rem;
 }
 
-.search-input {
-  margin-right: 1rem;
-  padding: 0.5rem;
+.nav > .nav-links > a {
+  display: inline-block;
+  padding: 13px 10px 13px 10px;
+  text-decoration: none;
+  color: #efefef;
 }
 
-.rs-stars {
-  margin-left: 1rem;
+.nav > .nav-links > a:hover {
+  background-color: rgba(0, 0, 0, 0.3);
 }
 
-.user-menu {
-    position: relative;
-    font-size: 27px;
-    align-items: center;
+.nav > #nav-check {
+  display: none;
+}
+
+.buttons-user-group{
+  width: 40%;
     display: flex;
-    justify-content: center;
-    width: 20%;
-    height: 10vh;
+    justify-content: space-around;
+    align-items: center;
 }
 
-.user-dropdown {
-  position: absolute;
-  top: 100%;
-  right: 0;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  z-index: 10;
-}
-
-.user-option {
-  padding: 0.5rem;
-  cursor: pointer;
-}
-
-.menu {
-  display: none; /* Hide menu by default for desktop */
-  cursor: pointer;
-}
-
-.middle {
-  width: 25px;
-  height: 3px;
-  background-color: #fff;
-  transition: all 0.3s;
-}
-
-.middle.close {
-  transform: rotate(-45deg);
-}
-
-
-.input_rating-section{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-
-.links.collapsed {
-  visibility: hidden;
-  height: 0;
-  overflow: hidden;
-}
-
-
-@media (max-width: 768px) {
-  nav {
-    flex-direction: row;
-    height: auto;
+@media (max-width:600px) {
+  .nav > .nav-links {
+    position: relative; /* Modifier la position en relative */
+    display: block;
+    width: 100%;
+    background-color: #333;
+    height: auto; /* Au lieu de 0px */
+    transition: all 0.3s ease-in;
+    overflow-y: hidden;
+    /* Supprimer les valeurs top et left */
   }
 
-  .logo {
-    margin-bottom: 1rem;
+  .nav > #nav-check:not(:checked) ~ .nav-links {
+    height: 0px;
+    overflow: hidden; /* Ajouter overflow pour masquer le contenu */
   }
 
-  .search-rating {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        margin-top: 1rem;
-    }
+  .nav > #nav-check:checked ~ .nav-links {
+    height: auto; /* Au lieu de calc(100vh - 50px) */
+    overflow-y: auto;
+  }
+
+  .nav > .nav-links > a {
+    display: block;
+    width: 100%;
+  }
 
   .search-input {
-    margin-bottom: 0.5rem;
-    padding: 0.5rem;
+    height: 5vh;
+    width: 55%;
+    position: relative;
   }
 
-  .rs-stars {
-    margin-bottom: 1rem;
+  .nav > .nav-btn > label {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    padding: 13px;
   }
-
-  .input_rating-section{
-        display: flex;
-    align-items: center;
-    flex-direction: column;
+  .nav > .nav-btn > label:hover,.nav  #nav-check:checked ~ .nav-btn > label {
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+  .nav > .nav-btn > label > span {
+    display: block;
+    width: 25px;
+    height: 10px;
+    border-top: 2px solid #eee;
+  }
+  .nav > .nav-btn {
+    display: block;
+}
+ 
 }
 
-  .links.show {
-        flex-direction: column;
-        display: flex;
-  visibility: visible;
-  height: auto;
-}
-
-
-  .menu {
-    margin-bottom: 1rem;
-  }
+.search-input{
+  height: 5vh;
+  width: auto;
 }
