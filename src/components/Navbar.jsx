@@ -31,7 +31,7 @@ const Navbar = ({ handleSearch, handleRatingFilter }) => {
       <div className="nav-header">
         <Link to='/' onClick={closeNavbar}>
           <div className="nav-title">
-            JoGeek
+            WEB MOVIE
           </div>
         </Link>
       </div>
@@ -44,7 +44,7 @@ const Navbar = ({ handleSearch, handleRatingFilter }) => {
       </div>
       <div className="nav-links">
         {/* {isFieldsVisible && ( */}
-          <div className="group" >
+        <div className="group-input-rating" >
 
             <input
               type="text"

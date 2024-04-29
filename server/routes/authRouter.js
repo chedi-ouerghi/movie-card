@@ -1,15 +1,13 @@
 const express = require('express');
 const router = express.Router();
 const Auth = require('../models/auth');
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
 const dotenv = require('dotenv');
 const authenticateToken = require('../Middleware/authenticateToken');
 
-// Charger les variables d'environnement
+
 dotenv.config();
 
-// Route pour l'inscription (register)
+
 router.post('/register', async (req, res) => {
     try {
         const user = req.body;
@@ -19,12 +17,12 @@ router.post('/register', async (req, res) => {
         res.status(500).json({ message: 'Erreur lors de l\'inscription', error: error.message });
     }
 });
-// Route pour la connexion (login)
+
 router.post('/login', async (req, res) => {
     try {
         const { email, password } = req.body;
         
-        // Trouver l'utilisateur par email et mot de passe
+        
         const user = await Auth.findByEmailAndPassword(email, password);
         
         if (!user) {
@@ -34,7 +32,7 @@ router.post('/login', async (req, res) => {
 
         console.log('Connexion réussie');
         
-        // Générer un nouveau token
+        
         const token = Auth.generateToken(user);
         res.status(200).json({ token });
     } catch (error) {
@@ -43,10 +41,10 @@ router.post('/login', async (req, res) => {
     }
 });
 
-// Route pour obtenir le profil de l'utilisateur
+
 router.get('/profile/:id', authenticateToken, async (req, res) => {
     try {
-        const { id } = req.user; // Utilisez l'ID de l'utilisateur provenant du token
+        const { id } = req.user; 
         const user = await Auth.findById(id);
 
         if (!user) {
@@ -60,7 +58,7 @@ router.get('/profile/:id', authenticateToken, async (req, res) => {
 });
 
 
-// Route pour obtenir tous les utilisateurs (accessible seulement pour l'admin)
+
 router.get('/users', authenticateToken, async (req, res) => {
     try {
         const { role } = req.user;

@@ -40,9 +40,10 @@ body {
 .nav > .nav-links {
     display: flex;
     font-size: 18px;
-    width: 30%;
-    justify-content: space-around;
+    width: 35%;
+    justify-content: center;
     align-items: center;
+    gap: 1%;
 }
 
 .nav > .nav-links > a {
@@ -65,6 +66,12 @@ body {
     display: flex;
     justify-content: space-around;
     align-items: center;
+}
+
+.group-input-rating{
+  display: flex;
+   justify-content: space-between ;
+   align-items: center
 }
 
 @media (max-width:600px) {

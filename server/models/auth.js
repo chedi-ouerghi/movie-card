@@ -44,7 +44,6 @@ static findById(id) {
 
         const hashedPassword = await bcrypt.hash(password, 10);
         
-        // Générer le token JWT
         const token = jwt.sign({ nom, prenom, email, role }, process.env.JWT_SECRET, { expiresIn: '1h' });
         
         return db.execute(
