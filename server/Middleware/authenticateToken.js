@@ -7,7 +7,7 @@ const authenticateToken = (req, res, next) => {
     const authHeader = req.headers['authorization'];
     const token = authHeader && authHeader.split(' ')[1];
 
-    console.log('Token reçu:', token); // Log du token reçu
+    console.log('Token reçu:', token); 
 
     if (!token) {
         console.log('Token non fourni');
@@ -20,7 +20,7 @@ const authenticateToken = (req, res, next) => {
             return res.status(403).json({ message: 'Token non valide' });
         }
         
-        console.log('Token décodé:', decodedToken); // Log du token décodé
+        console.log('Token décodé:', decodedToken);
 
         req.user = {
             id: decodedToken.id,

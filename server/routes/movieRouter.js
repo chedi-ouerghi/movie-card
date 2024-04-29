@@ -5,23 +5,23 @@ const checkRole = require('../middleware/checkRole');
 const authenticateToken = require('../Middleware/authenticateToken');
 
 
-// router.use(authenticateToken);
 
-// Get all movies
+
+
 router.get('/getAll-Movie', async (req, res) => {
-    console.log('Requête reçue pour getAll-Movie');  // Ajoutez ce log
+    console.log('Requête reçue pour getAll-Movie');  
     try {
         const [movies] = await Movie.fetchAll();
         res.json(movies);
     } catch (err) {
-        console.error('Erreur dans getAll-Movie:', err);  // Ajoutez ce log
+        console.error('Erreur dans getAll-Movie:', err);  
         res.status(500).json({ message: 'Server error' });
     }
 });
 
 
 
-// Get movie by id
+
 router.get('/:id', async (req, res) => {
     const { id } = req.params;
     try {
@@ -35,7 +35,7 @@ router.get('/:id', async (req, res) => {
     }
 });
 
-// Create movie (admin only)
+
 router.post('/', authenticateToken, checkRole('admin'), async (req, res) => {
     try {
         console.log('Création d\'un film par:', req.user);
@@ -50,7 +50,7 @@ router.post('/', authenticateToken, checkRole('admin'), async (req, res) => {
     }
 });
 
-// Update movie by id (admin only)
+
 router.put('/:id',authenticateToken, checkRole('admin'), async (req, res) => {
     const { id } = req.params;
     try {
@@ -64,7 +64,7 @@ router.put('/:id',authenticateToken, checkRole('admin'), async (req, res) => {
 });
 
 
-// Delete movie by id (admin only)
+
 router.delete('/:id',authenticateToken, checkRole('admin'), async (req, res) => {
     const { id } = req.params;
     try {
