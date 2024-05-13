@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import "./auth.css"
+import { Input } from 'antd';
 
 const Login = ({ setToken }) => {
   const [email, setEmail] = useState('');
@@ -39,11 +40,11 @@ const navigate = useNavigate();
       <form onSubmit={handleSubmit}>
         <div className='div1_form'>
           <label className='label_login'>Email:</label>
-          <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+          <Input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
         </div>
         <div className='div1_form'>
           <label className='label_login'>Password:</label>
-          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+          <Input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
         </div>
         <button  type="submit">Login</button>
        <div className="social">

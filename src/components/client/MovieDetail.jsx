@@ -1,10 +1,10 @@
+// MovieDetail.jsx
+
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import ReactStars from 'react-rating-stars-component';
 import axios from 'axios';
 import './movieDetails.css';
-
-
 
 const MovieDetail = () => {
   const { id } = useParams();
@@ -40,7 +40,6 @@ const MovieDetail = () => {
     return <div>Movie not found</div>;
   }
 
-
   const ratingChanged = (newRating) => {
     console.log(newRating);
   };
@@ -51,12 +50,14 @@ const MovieDetail = () => {
         <div className="info_section">
           <div className="movie_header">
             <img className="locandina" src="/image.jpg" alt={movie.title} />
-            <h1>{movie.title}</h1>
-            <h4>{movie.director}</h4>
-            <h5>{movie.stars}</h5>
+            <h1 className="movie_title">{movie.title}</h1>
+            <h4>Director: {movie.director}</h4>
+            <h5 className="stars_auther">Acteurs: {movie.stars_names.split(', ').map((star, index) => (
+              <span key={index} className="actor">{star}{index !== movie.stars_names.split(', ').length - 1 ? ', ' : ''}</span>
+            ))}</h5>
           </div>
           <div className="movie_desc">
-            <p className="text">{movie.description}</p>
+            <p className="description">Description: {movie.description}</p>
             <ReactStars
               count={5}
               value={movie.rating}
@@ -72,11 +73,9 @@ const MovieDetail = () => {
             </a>
           </div>
         </div>
-        <div className="blur_back"
-          // style={{ backgroundImage: `url(${movie.image})` }}
-        >
-                  <img src="/image.jpg" alt={movie.title} />
-</div>
+        <div className="blur_back">
+          <img src="/image.jpg" alt={movie.title} />
+        </div>
       </div>
     </div>
   );

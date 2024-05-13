@@ -23,7 +23,6 @@ const Register = () => {
         email,
         password,
         telephone,
-        // Supprimez le champ role s'il n'est pas utilisé dans la requête POST
         // role,
       });
       

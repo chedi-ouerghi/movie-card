@@ -16,7 +16,7 @@
     "Express",
     "MySQL"
   ],
-  "author": "Your Name",
+  "author": "chedi ouerghi",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.1.1",
