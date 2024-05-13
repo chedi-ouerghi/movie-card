@@ -116,8 +116,8 @@
   align-items: center;
   width: 20%;
   flex-wrap: wrap; */
-  text-decoration: underline;
-  color: darkslateblue;
+  /* text-decoration: underline; */
+  /* color: darkslateblue; */
 }
 
 @media screen and (min-width: 768px) {
@@ -204,3 +204,18 @@
 }
 
 
+.movie_title {
+  color: black;
+  font-weight: 700; /* Augmente l'épaisseur du texte */
+  margin-bottom: 10px; /* Ajoute un espace en bas */
+}
+
+.description {
+  color: #545454;
+  margin-bottom: 20px; /* Ajoute un espace en bas */
+}
+
+.actor {
+  text-decoration: underline;
+  color: blue;
+}

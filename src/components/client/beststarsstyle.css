@@ -1,0 +1,109 @@
+.card_beststars {
+  width: 17em;
+  height: 23.5em;
+  background: #171717;
+  transition: 1s ease-in-out;
+  clip-path: polygon(30px 0%, 100% 0, 100% calc(100% - 30px), calc(100% - 30px) 100%, 0 100%, 0% 30px);
+  border-top-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  display: flex;
+  flex-direction: column;
+      padding: 15px;
+}
+
+.card_beststars span {
+  font-weight: bold;
+  color: white;
+  text-align: center;
+  display: block;
+  font-size: 1em;
+}
+
+.card_beststars .date_of_birth_beststars,.country_beststars {
+  font-weight: 400;
+  color: white;
+  display: block;
+  text-align: center;
+  font-size: 0.72em;
+  margin: 1em;
+}
+
+.card_beststars .img_beststars {
+  width: 4.8em;
+  height: 4.8em;
+  background: white;
+  border-radius: 15px;
+  margin: auto;
+}
+
+.card_beststars .movie_titles_beststars{
+width: 100%;
+display: flex;
+flex-wrap: wrap;
+}
+.card_beststars .share_beststars {
+  margin-top: 1em;
+  display: flex;
+  justify-content: center;
+  gap: 1em;
+}
+
+.card_beststars .link_beststars{
+  color: white;
+  transition: .4s ease-in-out;
+}
+
+.card_beststars .link_beststars:hover {
+  color: red;
+}
+
+.card_beststars .button_beststars {
+  padding: 0.8em 1.7em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  border-radius: 25px;
+  border: none;
+  font-weight: bold;
+  background: #ffffff;
+  color: rgb(0, 0, 0);
+  transition: .4s ease-in-out;
+      width: 37%;
+}
+
+.card_beststars .button_beststars:hover {
+  background: rgba(187, 96, 5, 0.472);
+  color: white;
+  cursor: pointer;
+}
+
+
+/* .card_beststars::before {
+  content: '';
+  position: absolute;
+  width: 100px;
+  background-image: linear-gradient(180deg, rgb(0, 183, 255), rgb(255, 48, 255));
+  height: 130%;
+  animation: rotBGimg 3s linear infinite;
+  transition: all 0.2s linear;
+}
+
+@keyframes rotBGimg {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.card_beststars::after {
+  content: '';
+  position: absolute;
+  background: #07182E;
+  ;
+  inset: 5px;
+  border-radius: 15px;
+}   */
