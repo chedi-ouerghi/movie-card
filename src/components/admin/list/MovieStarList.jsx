@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import movieStarService from '../../../services/movieStarService';
+import { Link } from 'react-router-dom';
 
 const MovieStarList = () => {
     const [movieStars, setMovieStars] = useState([]);
@@ -37,7 +38,7 @@ const MovieStarList = () => {
     }, [movieStars, filterOption]);
 
     return (
-        <div style={{ width: '75%', margin: 'auto' }}>
+    <div style={{ width: '75%', margin: 'auto',height:'88vh',overflowY:'auto' }}>
             <div style={{ display:'flex',width:'100%',height:'10vh',alignItems:'centre',justifyContent:'space-between', padding: '10px',marginBottom: '3%',border:'1px solid'}}>
                 <h2 style={{ color: 'green',height:'100%' }}>Movie Star Associations</h2>
                 <div>
@@ -45,9 +46,13 @@ const MovieStarList = () => {
                         <option value="">-- Filtrer par --</option>
                         <option value="top_stars">Top Stars</option>
                     </select>
+                    
                 </div>
+                        <button style={{ width: '15%', height: '100%', background: '#000', color: '#fff', display:'flex', alignItems: 'center', justifyContent: 'center'}}>
+          <Link to='/admin/post-movie' style={{textDecoration:'none'}}>post new Movie Star</Link>
+        </button>
             </div>
-            <div style={{ overflowX: 'auto' }}>
+            <div style={{ overflowY: 'auto',    height: '70vh' }}>
                 <table style={{ width: '100%', borderCollapse: 'collapse', borderSpacing: '0', boxShadow: '0 4px 6px rgba(0,0,0,0.1)' }}>
                     <thead style={{ backgroundColor: '#f5f5f5' }}>
                         <tr>

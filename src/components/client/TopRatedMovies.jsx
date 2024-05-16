@@ -13,7 +13,7 @@ const TopRatedMovies = () => {
   useEffect(() => {
     const fetchTopMovies = async () => {
       try {
-        const response = await axios.get("http://localhost:5320/filtre/top-rated");
+        const response = await axios.get("http://localhost:5320/filtre/movies/top-rated");
         if (response.data) {
           setTopMovies(response.data);
         }
@@ -27,6 +27,7 @@ const TopRatedMovies = () => {
 
   return (
     <div className="list-top-rated">
+      
       {Array.isArray(topMovies) && topMovies.map((movie) => (
         <div className="card" key={movie.id}>
           <div className="card-details">

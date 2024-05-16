@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import './beststarsstyle.css'
+import { Link } from "react-router-dom";
 
 const BestStars = () => {
   const [bestStars, setBestStars] = useState([]);
@@ -23,11 +24,11 @@ const BestStars = () => {
       {bestStars.map((star) => (
         <div key={star.id} className="card_beststars">
           <div className="img_beststars"><img src="image.jpg" alt="pdp" style={{width:'100%',height:'100%'}}/></div>
-          <span className="name_beststars"><b>Name:</b> {star.name}</span>
-          <p className="country_beststars"> <b>Country:</b> {star.country}</p>
-          <p className="date_of_birth_beststars"><b> Date:</b> {star.date_of_birth}</p>
+          <span className="name_beststars"><b className="title_b">Name:</b> {star.name}</span>
+          <p className="country_beststars"> <b className="title_b">Country:</b> {star.country}</p>
+          <p className="date_of_birth_beststars"><b className="title_b"> Date:</b> {star.date_of_birth}</p>
           {/* <p className="movie_count_beststars">Movies:</b> {star.movie_count}</p> */}
-          <p className="movie_titles_beststars"><b>Movies:</b> {star.movie_titles}</p>
+          <p className="movie_titles_beststars"><b className="title_b">Movies:</b> {star.movie_titles}</p>
           <div className="share_beststars">
             {/* <button className="link_beststars">
               <svg
@@ -78,7 +79,7 @@ const BestStars = () => {
               </svg>
             </button> */}
           </div>
-          <button className="button_beststars">View</button>
+            <Link to={`/stars/${star.id}`} className="button_beststars">View</Link> {/* Utilisation de Link pour rediriger */}
         </div>
       ))}
     </div>

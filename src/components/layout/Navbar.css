@@ -6,33 +6,32 @@ body {
 }
 
 .nav {
-  height: auto;
-  min-height: 7vh;
-  width: 100%;
-  background-color: #4d4d4d;
-  position: sticky; /* Rendre la barre de navigation collante */
-  top: 0; /* Coller la barre de navigation en haut de la fenêtre */
-  z-index: 1000; /* Assurez-vous que la barre de navigation est au-dessus du contenu */
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  align-content: center;
+    height: auto;
+    min-height: 7vh;
+    width: 100%;
+    background-color: #0a0c0d; /* Rendre la barre de navigation transparente */
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    align-content: center;
+    backdrop-filter: blur(10px); /* Ajouter l'effet de flou */
 }
-
-
-
-
 
 .nav > .nav-header {
-  display: inline;
-}
+display: inline;
+    position: relative;
+    left: 2%;}
 
 .nav > .nav-header > .nav-title {
   display: inline-block;
   font-size: 22px;
-  color: #fff;
-  padding: 10px 10px 10px 10px;
+  color: #BDBDBD;
+  padding: 10px 10px;
 }
+
 
 .nav > .nav-btn {
   display: none;
@@ -51,7 +50,7 @@ body {
   display: inline-block;
   padding: 13px 10px 13px 10px;
   text-decoration: none;
-  color: #efefef;
+  color: #BDBDBD;
 }
 
 .nav > .nav-links > a:hover {
@@ -73,7 +72,10 @@ body {
 .group-input-rating{
   display: flex;
    justify-content: space-between ;
-   align-items: center
+   align-items: center;
+       height: 10vh;
+    width: 100%;
+
 }
 
 @media (max-width:600px) {
@@ -142,11 +144,13 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #ffffff;
-    color: #080710;
+    background-color: #FFD600;
+    color: #0D47A1;
     padding: 15px 0;
     font-size: 18px;
     font-weight: 600;
-    border-radius: 5px;
+    border-radius: 25px;
     cursor: pointer;
+    border: 2px solid #FFD600;
+    margin-left: 5px;
 }

@@ -31,7 +31,7 @@ const navigate = useNavigate();
   };
 
   return (
-      <>
+      <div style={{height:'93vh'}}>
           <div className="background">
     <div className="shape" />
     <div className="shape" />
@@ -56,7 +56,7 @@ const navigate = useNavigate();
       </div>
     </div>
           </form>
-    </>
+    </div>
   );
 };
 

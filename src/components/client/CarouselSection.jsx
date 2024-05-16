@@ -18,15 +18,15 @@ const CarouselSection = () => {
           infinite={false}    
           >
       {movies.map(movie => (
-        <div key={movie.movie_id} className='data-carousel' 
+        <div key={movie.id} className='data-carousel' 
          >
           <div className="movie-card-carousel" 
           >
             <div className="card-img-carousel">
-              <img src="/image.jpg" alt={movie.movie_title} className="blur-image-carousel" />
+              <img src="/image.jpg" alt={movie.title} className="blur-image-carousel" />
               <div className="card-overlay-carousel">
-                <div className="card-title">{movie.movie_title}</div>
-                <div className="card-rating">Rating: {movie.movie_rating}</div>
+                <div className="card-title">{movie.title}</div>
+                <div className="card-rating">Rating: {movie.rating}</div>
               </div>
             </div>
           </div>

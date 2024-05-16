@@ -35,7 +35,7 @@ const Register = () => {
   };
 
   return (
-    <>
+    <div style={{height:'93vh'}}>
       <div className="background">
         <div className="shape" />
         <div className="shape" />
@@ -68,7 +68,7 @@ const Register = () => {
         Vous avez déjà un compte ? 
         <Link to="/login" style={{ textDecoration: "underline", marginLeft: "5px" }}>Connectez-vous</Link>
       </span>
-    </>
+    </div>
   );
 };
 

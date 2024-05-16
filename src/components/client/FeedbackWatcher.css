@@ -1,0 +1,64 @@
+.feedback-watcher {
+    width: 60%;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+    height: 74vh;
+}
+
+.feedback-watcher h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.feedback-list {
+  list-style: none;
+  padding: 0;
+}
+
+.feedback-item {
+display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #1b1919;
+    box-shadow: 8px 10px 5px 1px #a5a5a5;
+    margin-block: 5%;
+    width: 90%;
+}
+
+.feedback-item:nth-child(odd) {
+    margin-left: 0;
+}
+
+.feedback-item:nth-child(even) {
+    margin-left: 38px;
+}
+
+.avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 15px;
+}
+
+.feedback-text {
+  flex: 1;
+  font-size: 16px;
+}
+
+.movie-title{
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+.feedback-item:nth-child(even) {
+  background-color: #b6b6b6;
+}
+
+.feedback-item:nth-child(odd) {
+  background-color: #ffffff;
+}
