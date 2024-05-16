@@ -59,8 +59,9 @@ HAVING COUNT(ms.star_id) >= 3;
     
 
 static create(movieStarData) {
-    return db.execute('INSERT INTO movie_star (movie_id, star_id) VALUES (?, ?)', [movieStarData.movie_id, movieStarData.star_id]);
-    }
+    return db.execute('INSERT INTO movie_star (movie_id, star_id, date_insert) VALUES (?, ?, ?)', [movieStarData.movie_id, movieStarData.star_id, new Date()]);
+}
+
     
     static deleteByMovieId(movieId) {
         return db.execute('DELETE FROM movie_star WHERE movie_id = ?', [movieId]);

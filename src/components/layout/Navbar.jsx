@@ -7,13 +7,13 @@ import './Navbar.css';
 const Navbar = () => {
   const [isChecked, setIsChecked] = useState(false);
   const [isFieldsVisible, setIsFieldsVisible] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // État pour vérifier si l'utilisateur est connecté
+  const [isLoggedIn, setIsLoggedIn] = useState(false); 
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Vérifie la présence du token dans le localStorage
+    
     const token = localStorage.getItem('token');
-    setIsLoggedIn(!!token); // Met à jour l'état isLoggedIn en fonction de la présence du token
+    setIsLoggedIn(!!token); 
   }, []);
 
   const closeNavbar = () => {
@@ -27,11 +27,11 @@ const Navbar = () => {
   };
 
   const handleLogout = () => {
-    // Supprimer le token du localStorage
+    
     localStorage.removeItem('token');
-    // Mettre à jour l'état pour refléter la déconnexion
+    
     setIsLoggedIn(false);
-    // Rediriger vers la page d'accueil ou une autre page appropriée
+    
     navigate('/');
   };
 

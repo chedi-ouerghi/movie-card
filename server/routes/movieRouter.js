@@ -44,8 +44,6 @@ router.get('/top-rated', async (req, res) => {
     }
 });
 
-
-
 router.post('/', authenticateToken, checkRole('admin'), async (req, res) => {
     const movieData = req.body;
     const userId = req.user.id;

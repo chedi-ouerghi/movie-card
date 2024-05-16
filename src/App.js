@@ -10,8 +10,10 @@ import Footer from './components/layout/Footer';
 import Login from './components/client/Login';
 import Register from './components/client/Register';
 import Profile from './components/client/Profile';
-import AdminRoutes from './AdminRoutes'; 
+import { AdminRoutes, AdminHome } from './AdminRoutes';
 import { AuthProvider } from './services/AuthContext';
+import ActorsDetails from './components/client/ActorsDetails';
+import ListCardMovies from './components/client/ListCardMovies.jsx';
 
 function App() {
   const [token, setToken] = useState(''); 
@@ -19,20 +21,23 @@ function App() {
     <AuthProvider>
       <Router>
         <Navbar  />
-        {/* <div className="App"> */}
+        <div style={{background:"#e5e5e5"}}>
           <Routes>
             <Route path="/" element={<MovieList />} />
+            <Route path="/movies" element={<ListCardMovies />} />
       
             <Route path="/admin/*" element={<AdminRoutes />} />
             
             <Route path="/movie/:id" element={<MovieDetail />} />
+            <Route path="/stars/:id" element={<ActorsDetails />} />
             <Route path="/login" element={<Login setToken={setToken} />} />
             <Route path="/register" element={<Register />} />
             <Route path="/profile" element={<Profile token={token} />} />
 
             <Route path="*" element={<NotFound />} />
           </Routes>
-        <Footer />
+          </div>
+        {/* <Footer /> */}
       </Router>
     </AuthProvider>
   );

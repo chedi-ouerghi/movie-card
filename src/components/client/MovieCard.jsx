@@ -13,22 +13,23 @@ const truncateActors = (actors, maxLength) => {
   return truncatedActors.slice(0, maxLength) + "...";
 };
 
-const MovieCard = ({ movie }) => {
-  const truncatedDescription = truncateText(movie.movie_description, 30);
-  const truncatedActors = truncateActors(movie.actor_names ? movie.actor_names.split(',') : [], 25);
+const MovieCard = ({ movie, overlayPosition }) => {
+  const truncatedDescription = truncateText(movie.description, 30);
+  const truncatedActors = truncateActors(movie.stars_names ? movie.stars_names.split(',') : [], 25);
 
   const ratingChanged = (newRating) => {
     console.log(newRating);
   };
 
+
   return (
     <div className="movie-card">
       <div className="card-img">
-        <img src="/image.jpg" alt={movie.movie_movie_title} className="blur-image" />
+        <img src="/image.jpg" alt={movie.title} className="blur-image" />
         <div className="card-overlay">
-          <div className="card-title">{movie.movie_title}</div>
+          <div className="card-title">{movie.title}</div>
           <div className="card-director">
-            <strong>Director:</strong> {movie.movie_director}
+            <strong>Director:</strong> {movie.director}
           </div>
           <div className="card-Acteurs">
             <strong>Acteurs:</strong> {truncatedActors}
@@ -39,7 +40,7 @@ const MovieCard = ({ movie }) => {
           </div>
           <ReactStars
             count={5}
-            value={movie.movie_rating}
+            value={movie.rating}
             onChange={ratingChanged}
             size={24}
             activeColor="#ffd700"
@@ -47,9 +48,9 @@ const MovieCard = ({ movie }) => {
             half={false}
             classNames="rs-stars"
           />
-          {movie.movie_id && (
-            <Link to={`/movie/${movie.movie_id}`}
-              style={{ textDecoration: 'none', color: '#fff', background: '#007bff', padding: '8px 16px', borderRadius: '4px', marginTop: '8px', display: 'inline-block' }}>
+          {movie.id && (
+            <Link to={`/movie/${movie.id}`}
+              style={{ textDecoration: 'none', color: '#FFD600', background: '#0D47A1', padding: '8px 16px', borderRadius: '25px', marginTop: '8px', display: 'inline-block' }}>
               View movie
             </Link>
           )}

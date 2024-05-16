@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import starService from '../../../services/starService';
+import { Link } from 'react-router-dom';
 
 const StarList = () => {
     const [stars, setStars] = useState([]);
@@ -34,11 +35,14 @@ const StarList = () => {
     }
 
     return (
-        <div style={{ width: '75%', margin: 'auto' }}>
+    <div style={{ width: '75%', margin: 'auto',height:'88vh',overflowY:'auto' }}>
             <div style={{ display:'flex',width:'100%',height:'10vh',alignItems:'centre',justifyContent:'space-between', padding: '10px',marginBottom: '3%',border:'1px solid'}}>
                 <h2 style={{ color: 'green', height: '100%' }}>Star List</h2>
+                                        <button style={{ width: '15%', height: '100%', background: '#000', color: '#fff', display:'flex', alignItems: 'center', justifyContent: 'center'}}>
+          <Link to='/admin/post-movie' style={{textDecoration:'none'}}>post new Star</Link>
+        </button>
             </div>
-            <div style={{ overflowX: 'auto' }}>
+            <div style={{ overflowY: 'auto',    height: '70vh' }}>
                 <table style={{ width: '100%', borderCollapse: 'collapse', borderSpacing: '0', boxShadow: '0 4px 6px rgba(0,0,0,0.1)' }}>
                     <thead style={{ backgroundColor: '#f5f5f5' }}>
                         <tr>

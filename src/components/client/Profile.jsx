@@ -36,6 +36,7 @@ const Profile = ({ token }) => {
   }
 
   return (
+    <div className="profile_container">
     <div className="profile-card">
       <h2 className="profile-title">Profile</h2>
       {error && <div className="error">{error}</div>}
@@ -60,7 +61,8 @@ const Profile = ({ token }) => {
           List
         </button>
       </div>
-    </div>
+      </div>
+      </div>
   );
 };
 

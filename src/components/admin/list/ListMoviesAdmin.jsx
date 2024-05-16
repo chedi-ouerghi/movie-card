@@ -1,15 +1,30 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import { Link } from "react-router-dom";
+import { Modal, Button, Popover, Select, Input } from 'antd';
+
+const { Option } = Select;
+const { Search } = Input;
 
 const ListMoviesAdmin = ({ token }) => {
   const [movies, setMovies] = useState([]);
+  const [genres, setGenres] = useState([]);
+  const [selectedGenre, setSelectedGenre] = useState('');
+  const [searchValue, setSearchValue] = useState('');
   const [isLoading, setIsLoading] = useState(true);
+  const [modalVisible, setModalVisible] = useState(false);
+  const [selectedMovie, setSelectedMovie] = useState(null);
+  const [popoverContent, setPopoverContent] = useState(null);
+  const [popoverVisible, setPopoverVisible] = useState(false);
 
   useEffect(() => {
     const fetchMovies = async () => {
+      let url = 'http://localhost:5320/api/movies/';
+      if (selectedGenre) {
+        url = `http://localhost:5320/filtre/genre/${selectedGenre}`;
+      }
       try {
-        const response = await axios.get('http://localhost:5320/api/movies/', {
+        const response = await axios.get(url, {
           headers: {
             'Authorization': `Bearer ${token}`
           }
@@ -23,46 +38,164 @@ const ListMoviesAdmin = ({ token }) => {
     };
 
     fetchMovies();
-  }, [token]);
+  }, [token, selectedGenre]);
+
+  useEffect(() => {
+    const fetchGenres = async () => {
+      try {
+        const response = await axios.get('http://localhost:5320/filtre/genres');
+        // Assurez-vous que response.data est un tableau de chaînes de caractères
+        const formattedGenres = response.data.map(genre => genre.genre);
+        setGenres(formattedGenres);
+      } catch (err) {
+        console.error('Error fetching genres:', err);
+      }
+    };
+
+    fetchGenres();
+  }, []);
+
+  const handleModalOpen = (movie) => {
+    setSelectedMovie(movie);
+    setModalVisible(true);
+  };
+
+  const handlePopoverOpen = async (movieId) => {
+    try {
+      const response = await axios.get(`http://localhost:5320/api/movies/${movieId}`);
+      const movie = response.data;
+      setPopoverContent(
+        <div>
+          <p>Title: {movie.title}</p>
+          <p>Director: {movie.director}</p>
+          {/* Ajoutez d'autres détails du film ici */}
+        </div>
+      );
+      setPopoverVisible(true);
+    } catch (error) {
+      console.error('Error fetching movie details:', error);
+    }
+  };
+
+  const handlePopoverClose = () => {
+    setPopoverVisible(false);
+  };
+
+  const handleModalClose = () => {
+    setSelectedMovie(null);
+    setModalVisible(false);
+  };
+
+  const handleGenreChange = (value) => {
+    setSelectedGenre(value);
+  };
+
+  const handleSearchChange = (e) => {
+    setSearchValue(e.target.value);
+  };
+
+ const filteredMovies = movies.filter(movie => {
+  return movie.title && movie.title.toLowerCase().includes(searchValue.toLowerCase());
+});
+
 
   if (isLoading) {
     return <div>Loading...</div>;
   }
 
   return (
-    <div style={{ width: '75%', margin: 'auto' }}>
-      <div style={{ display:'flex', width:'100%', height:'10vh', alignItems:'center', justifyContent:'space-between', padding: '10px', marginBottom: '3%', border:'1px solid'}}>
+    <div style={{ width: '75%', margin: 'auto', height: '88vh', overflowY: 'auto' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '1rem' }}>
         <h2 style={{ color: 'green' }}>List Movies</h2>
-        <button style={{ width: '15%', height: '100%', background: '#000', color: '#fff', display:'flex', alignItems: 'center', justifyContent: 'center'}}>
-          <Link to='/admin/post-movie' style={{textDecoration:'none'}}>post new movie</Link>
+        <div style={{ width: '35%', height: '100%', background: 'transparent', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center' }} >
+          <Select style={{ width: 200 }} placeholder="Select Genre" onChange={handleGenreChange}>
+            {genres.map((genre, index) => (
+              <Option key={index} value={genre}>{genre}</Option>
+            ))}
+          </Select>
+          <Search
+            placeholder="Search by title"
+            onChange={handleSearchChange}
+            style={{ width: 200, marginLeft: '1em' }}
+          />
+        </div>
+ <button style={{ width: '15%', height: '100%', background: '#000', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <Link to='/admin/post-movie' style={{ textDecoration: 'none' }}>Post new movie</Link>
         </button>
       </div>
-      <div style={{ overflowX: 'auto' }}>
+      <div
+        style={{ overflowY: 'auto', height: '67vh' }}
+      >
         <table style={{ width: '100%', borderCollapse: 'collapse', border: '1px solid #ddd' }}>
           <thead style={{ backgroundColor: '#f2f2f2' }}>
             <tr>
+              <th style={{ padding: '12px', textAlign: 'left', borderRight: '1px solid #ddd' }}>ID</th>
               <th style={{ padding: '12px', textAlign: 'left', borderRight: '1px solid #ddd' }}>Title</th>
               <th style={{ padding: '12px', textAlign: 'left', borderRight: '1px solid #ddd' }}>Director</th>
               <th style={{ padding: '12px', textAlign: 'left', borderRight: '1px solid #ddd' }}>Stars</th>
               <th style={{ padding: '12px', textAlign: 'left', borderRight: '1px solid #ddd' }}>Description</th>
-              <th style={{ padding: '12px', textAlign: 'left' }}>Rating</th>
+              <th style={{ padding: '12px', textAlign: 'left', borderRight: '1px solid #ddd' }}>Genre</th>
+              <th style={{ padding: '12px', textAlign: 'left', borderRight: '1px solid #ddd' }}>Rating</th>
+              <th style={{ padding: '12px', textAlign: 'left' }}>Actions</th>
             </tr>
           </thead>
-          <tbody>
-            {movies.map((movie, index) => (
-              <tr key={index} style={{ borderBottom: '1px solid #ddd' ,backgroundColor: 'rgb(169 184 196)'}}>
-                <td style={{ padding: '12px', textAlign: 'left', borderRight: '1px solid #ddd' }}>{movie.movie_title}</td>
-                <td style={{ padding: '12px', textAlign: 'left', borderRight: '1px solid #ddd' }}>{movie.movie_director}</td>
-                <td style={{ padding: '12px', textAlign: 'left', borderRight: '1px solid #ddd' }}>{Array.isArray(movie.actor_names) ? movie.actor_names.join(', ') : movie.actor_names}</td>
-                <td style={{ padding: '12px', textAlign: 'left', borderRight: '1px solid #ddd' }}>{movie.movie_description}</td>
-                <td style={{ padding: '12px', textAlign: 'left' }}>{movie.movie_rating}</td>
+          <tbody style={{ overflowX: 'auto' }}>
+           {filteredMovies.map((movie) => (
+              <tr key={movie.id} style={{ borderBottom: '1px solid #ddd', backgroundColor: 'rgb(169 184 196)' }} onDoubleClick={() => handlePopoverOpen(movie.movie_id)}>
+                <td style={{ padding: '12px', textAlign: 'left', borderRight: '1px solid #ddd' }}>{movie.id}</td>
+                <td style={{ padding: '12px', textAlign: 'left', borderRight: '1px solid #ddd' }}>{movie.title}</td>
+                <td style={{ padding: '12px', textAlign: 'left', borderRight: '1px solid #ddd' }}>{movie.director}</td>
+                <td style={{ padding: '12px', textAlign: 'left', borderRight: '1px solid #ddd' }}>{movie.stars_names}</td>
+                <td style={{ padding: '12px', textAlign: 'left', borderRight: '1px solid #ddd' }}>{movie.description}</td>
+                <td style={{ padding: '12px', textAlign: 'left', borderRight: '1px solid #ddd' }}>{movie.genre}</td>
+                <td style={{ padding: '12px', textAlign: 'left', borderRight: '1px solid #ddd' }}>{movie.rating}</td>
+                <td style={{ padding: '12px', textAlign: 'left' }}>
+                  <button onClick={() => handleModalOpen(movie)}>Edit</button>
+                </td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
+
+      {/* Popover pour afficher les détails du film */}
+      <Popover
+        title="Movie Details"
+        content={popoverContent}
+        visible={popoverVisible}
+        onVisibleChange={handlePopoverClose}
+        trigger="click"
+      >
+        <div />
+      </Popover>
+
+      {/* Modal for editing movie */}
+      <Modal
+        title="Edit Movie"
+        open={modalVisible}
+        onCancel={handleModalClose}
+        footer={[
+          <Button key="cancel" onClick={handleModalClose}>
+            Cancel
+          </Button>,
+          <Button key="submit" type="primary"
+            // onClick={handleModalSubmit}
+          >
+            Save Changes
+          </Button>,
+        ]}
+      >
+        {/* Form for editing movie */}
+        {selectedMovie && (
+          // Render your edit form here with input fields pre-populated with selectedMovie data
+          <div>
+            <p>Title: {selectedMovie.title}</p>
+          </div>
+        )}
+      </Modal>
     </div>
   );
 };
 
 export default ListMoviesAdmin;
+

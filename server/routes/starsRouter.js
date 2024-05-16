@@ -32,8 +32,8 @@ router.post('/', authenticateToken, checkRole('admin'), async (req, res) => {
     const starData = req.body;
 
     try {
-        const { name, date_of_birth, country, image } = starData;
-        if (!name || !date_of_birth || !country || !image) {
+        const { name, date_of_birth, country, image,description } = starData;
+        if (!name || !date_of_birth || !country || !image || !description) {
             return res.status(400).json({ message: 'Veuillez fournir toutes les informations nécessaires pour créer une star.' });
         }
 

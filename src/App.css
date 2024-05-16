@@ -56,8 +56,8 @@
     display: flex;
     gap: 20px;
     padding: 20px;
-    background-color: #fff;
-    color: #fff;
+  /* background:  linear-gradient(to bottom, rgb(255, 255, 255), rgb(0, 0, 0)), url('C:\Users\chedi\movie-card\public\image.jpg'); */
+  /* color: #fff; */
     line-height: 1.6;
     position: relative;
     overflow: hidden;
@@ -66,12 +66,28 @@
     flex-direction: column;
 }
 
+
+.banner_section{
+    display: flex;
+    width: 100%;
+    height: 90vh;
+    gap: 1%;
+ background:  linear-gradient(to bottom, rgba(255, 106, 0, 0.732), rgba(3, 32, 5, 0.732)), url('C:\Users\chedi\movie-card\public\image.jpg');
+  background-size: cover;
+  backdrop-filter: blur(10px);
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  text-align: center;
+  padding: 20px;}
+
+
 .list_cards {
     display: flex;
     align-items: center;
     gap: 20px;
     padding: 20px;
-    background-color: #fff;
+    /* background-color: #fff; */
     color: #000; /* Changement de la couleur du texte pour être visible sur fond blanc */
     line-height: 1.6;
     position: relative;
@@ -81,7 +97,8 @@
     height: 25rem;
     width: 100%;
     flex-wrap: nowrap;
-    white-space: nowrap; /* Empêche le retour à la ligne des éléments flexibles */
+    white-space: nowrap; 
+        border-radius: 5px;
 }
 
 .movie-card {
@@ -171,8 +188,8 @@ margin-bottom: 15px;
 }
 
 .view_movie:hover {
-  background: #000;
-  color: #fff;
+  background: #FFD600;
+  color: #0D47A1;
   box-shadow: 0px 0px 10px rgba(0, 123, 255, 0.5);
 }
 
@@ -204,7 +221,7 @@ margin-bottom: 15px;
 .top-rated-movies-title,
 .actors-movies-title {
   font-size: 1.5rem;
-  color: #131212;
+  color: #000000;
 }
 
 
@@ -213,8 +230,8 @@ margin-bottom: 15px;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #171717;
-  color: white;
+  background-color: #0a0c0d;
+  color: #BDBDBD;
   position: relative;
   bottom: 0;
   width: 100%;
