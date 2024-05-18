@@ -5,13 +5,13 @@ const authenticateToken = require('../Middleware/authenticateToken');
 const checkRole = require('../Middleware/checkRole');
 
 
-router.get('/', async (req, res) => {
-    try {
-        const movieStars = await MovieStar.fetchAll();
-    } catch (error) {
-        res.status(500).json({ error: error.message });
-    }
-});
+// router.get('/', async (req, res) => {
+//     try {
+//         const movieStars = await MovieStar.fetchAll();
+//     } catch (error) {
+//         res.status(500).json({ error: error.message });
+//     }
+// });
 
 router.get('/fetchTitleAndName', async (req, res) => {
     try {

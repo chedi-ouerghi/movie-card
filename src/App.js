@@ -3,17 +3,16 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/layout/Navbar';
-import MovieList from './components/client/MovieList';
-import MovieDetail from './components/client/MovieDetail';
-import NotFound from './components/client/NotFound';
-import Footer from './components/layout/Footer';
-import Login from './components/client/Login';
-import Register from './components/client/Register';
-import Profile from './components/client/Profile';
-import { AdminRoutes, AdminHome } from './AdminRoutes';
+import MovieList from './components/client/movies/MovieList.jsx';
+import MovieDetail from './components/client/movies/MovieDetail.jsx';
+import NotFound from './components/layout/NotFound.jsx';
+import Login from './components/client/auth/Login.jsx';
+import Register from './components/client/auth/Register.jsx';
+import Profile from './components/client/auth/Profile.jsx';
+import { AdminRoutes, AdminHome } from './routes/AdminRoutes.jsx';
 import { AuthProvider } from './services/AuthContext';
-import ActorsDetails from './components/client/ActorsDetails';
-import ListCardMovies from './components/client/ListCardMovies.jsx';
+import ActorsDetails from './components/client/stars/ActorsDetails.jsx';
+import ListCardMovies from './components/client/movies/ListCardMovies.jsx';
 
 function App() {
   const [token, setToken] = useState(''); 
