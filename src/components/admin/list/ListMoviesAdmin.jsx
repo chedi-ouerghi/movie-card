@@ -6,6 +6,8 @@ import { Modal, Button, Popover, Select, Input } from 'antd';
 const { Option } = Select;
 const { Search } = Input;
 
+const baseApiUrl = 'http://localhost:5320';
+
 const ListMoviesAdmin = ({ token }) => {
   const [movies, setMovies] = useState([]);
   const [genres, setGenres] = useState([]);
@@ -19,9 +21,9 @@ const ListMoviesAdmin = ({ token }) => {
 
   useEffect(() => {
     const fetchMovies = async () => {
-      let url = 'http://localhost:5320/api/movies/';
+      let url = `${baseApiUrl}/api/movies/`;
       if (selectedGenre) {
-        url = `http://localhost:5320/filtre/genre/${selectedGenre}`;
+        url = `${baseApiUrl}/filtre/movies/genre/${selectedGenre}`;
       }
       try {
         const response = await axios.get(url, {
@@ -43,10 +45,8 @@ const ListMoviesAdmin = ({ token }) => {
   useEffect(() => {
     const fetchGenres = async () => {
       try {
-        const response = await axios.get('http://localhost:5320/filtre/genres');
-        // Assurez-vous que response.data est un tableau de chaînes de caractères
-        const formattedGenres = response.data.map(genre => genre.genre);
-        setGenres(formattedGenres);
+        const response = await axios.get(`${baseApiUrl}/filtre/movies/genres`);
+        setGenres(response.data.map(genre => genre.genre));
       } catch (err) {
         console.error('Error fetching genres:', err);
       }
@@ -60,15 +60,44 @@ const ListMoviesAdmin = ({ token }) => {
     setModalVisible(true);
   };
 
+  const handleInputChange = (field, value) => {
+    setSelectedMovie(prevMovie => ({
+      ...prevMovie,
+      [field]: value
+    }));
+  };
+
+  const handleModalSubmit = async () => {
+    try {
+      await axios.put(`${baseApiUrl}/api/movies/${selectedMovie.id}`, selectedMovie, {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
+      setMovies(prevMovies => prevMovies.map(movie => 
+        movie.id === selectedMovie.id ? selectedMovie : movie
+      ));
+      setModalVisible(false);
+    } catch (error) {
+      console.error('Error updating movie:', error);
+    }
+  };
+
   const handlePopoverOpen = async (movieId) => {
     try {
-      const response = await axios.get(`http://localhost:5320/api/movies/${movieId}`);
+      const response = await axios.get(`${baseApiUrl}/api/movies/${movieId}`);
       const movie = response.data;
       setPopoverContent(
         <div>
           <p>Title: {movie.title}</p>
+          <p>Description: {movie.description}</p>
           <p>Director: {movie.director}</p>
-          {/* Ajoutez d'autres détails du film ici */}
+          <p>Rating: {movie.rating}</p>
+          <p>Trailer: {movie.trailer}</p>
+          <p>Genre: {movie.genre}</p>
+          <p>Duration: {movie.duration}</p>
+          <p>Origin: {movie.origin}</p>
+          <p>Age: {movie.age}</p>
         </div>
       );
       setPopoverVisible(true);
@@ -94,10 +123,9 @@ const ListMoviesAdmin = ({ token }) => {
     setSearchValue(e.target.value);
   };
 
- const filteredMovies = movies.filter(movie => {
-  return movie.title && movie.title.toLowerCase().includes(searchValue.toLowerCase());
-});
-
+  const filteredMovies = movies.filter(movie => 
+    movie.title && movie.title.toLowerCase().includes(searchValue.toLowerCase())
+  );
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -141,7 +169,7 @@ const ListMoviesAdmin = ({ token }) => {
           </thead>
           <tbody style={{ overflowX: 'auto' }}>
            {filteredMovies.map((movie) => (
-              <tr key={movie.id} style={{ borderBottom: '1px solid #ddd', backgroundColor: 'rgb(169 184 196)' }} onDoubleClick={() => handlePopoverOpen(movie.movie_id)}>
+              <tr key={movie.id} style={{ borderBottom: '1px solid #ddd', backgroundColor: 'rgb(169 184 196)' }} onDoubleClick={() => handlePopoverOpen(movie.id)}>
                 <td style={{ padding: '12px', textAlign: 'left', borderRight: '1px solid #ddd' }}>{movie.id}</td>
                 <td style={{ padding: '12px', textAlign: 'left', borderRight: '1px solid #ddd' }}>{movie.title}</td>
                 <td style={{ padding: '12px', textAlign: 'left', borderRight: '1px solid #ddd' }}>{movie.director}</td>
@@ -170,29 +198,86 @@ const ListMoviesAdmin = ({ token }) => {
       </Popover>
 
       {/* Modal for editing movie */}
-      <Modal
-        title="Edit Movie"
-        open={modalVisible}
-        onCancel={handleModalClose}
-        footer={[
-          <Button key="cancel" onClick={handleModalClose}>
-            Cancel
-          </Button>,
-          <Button key="submit" type="primary"
-            // onClick={handleModalSubmit}
-          >
-            Save Changes
-          </Button>,
-        ]}
-      >
-        {/* Form for editing movie */}
-        {selectedMovie && (
-          // Render your edit form here with input fields pre-populated with selectedMovie data
-          <div>
-            <p>Title: {selectedMovie.title}</p>
-          </div>
-        )}
-      </Modal>
+     <Modal
+  title="Edit Movie"
+  open={modalVisible}
+  onCancel={handleModalClose}
+  footer={[
+    <Button key="cancel" onClick={handleModalClose}>
+      Cancel
+    </Button>,
+    <Button key="submit" type="primary" onClick={handleModalSubmit}>
+      Save Changes
+    </Button>,
+  ]}
+>
+  {/* Form for editing movie */}
+  {selectedMovie && (
+    <div>
+      <p>Title:</p>
+      <Input
+        value={selectedMovie.title}
+        onChange={(e) => handleInputChange('title', e.target.value)}
+      />
+      <p>Description:</p>
+      <Input.TextArea
+        value={selectedMovie.description}
+        onChange={(e) => handleInputChange('description', e.target.value)}
+      />
+      <p>Image:</p>
+      <Input
+        value={selectedMovie.image}
+        onChange={(e) => handleInputChange('image', e.target.value)}
+      />
+      <p>Rating:</p>
+      <Input
+        value={selectedMovie.rating}
+        onChange={(e) => handleInputChange('rating', e.target.value)}
+      />
+      <p>Director:</p>
+      <Input
+        value={selectedMovie.director}
+        onChange={(e) => handleInputChange('director', e.target.value)}
+      />
+      <p>Trailer:</p>
+      <Input
+        value={selectedMovie.trailer}
+        onChange={(e) => handleInputChange('trailer', e.target.value)}
+      />
+      <p>Top:</p>
+      <Input
+        value={selectedMovie.top}
+        onChange={(e) => handleInputChange('top', e.target.value)}
+      />
+      <p>Genre:</p>
+      <Input
+        value={selectedMovie.genre}
+        onChange={(e) => handleInputChange('genre', e.target.value)}
+      />
+      <p>Date Insert:</p>
+      <Input
+        value={selectedMovie.date_insert}
+        onChange={(e) => handleInputChange('date_insert', e.target.value)}
+      />
+      <p>Duration:</p>
+      <Input
+        value={selectedMovie.duration}
+        onChange={(e) => handleInputChange('duration', e.target.value)}
+      />
+      <p>Origin:</p>
+      <Input
+        value={selectedMovie.origin}
+        onChange={(e) => handleInputChange('origin', e.target.value)}
+      />
+      <p>Age:</p>
+      <Input
+        value={selectedMovie.age}
+        onChange={(e) => handleInputChange('age', e.target.value)}
+      />
+    </div>
+  )}
+</Modal>
+
     </div>
   );
 };

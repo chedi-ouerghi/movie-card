@@ -28,11 +28,14 @@ class Movie {
         }
     }
 
-    static update(id, movie) {
-        const { user_id, title, description, image, rating, director, trailer, top, genre, duration, origin, age } = movie;
-        return db.execute('CALL UpdateMovie(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
-            [id, user_id, title, description, image, rating, director, trailer, top, genre, duration, origin, age]);
-    }
+static update(id, movie) {
+    const { user_id, title, description, image, rating, director, trailer, top, genre, duration, origin, age } = movie;
+    const values = [id, user_id, title, description, image, rating, director, trailer, top, genre, duration, origin, age];
+    const definedValues = values.map(value => (value !== undefined ? value : null));
+
+    return db.execute('CALL UpdateMovie(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', definedValues);
+}
+
 
     static delete(id) {
         return db.execute('DELETE FROM movies WHERE id = ?', [id]);

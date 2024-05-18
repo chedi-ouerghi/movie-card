@@ -141,6 +141,16 @@ router.get('/movies/age/:age', async (req, res) => {
 });
 
 
+router.get('/countries', async (req, res) => {
+    try {
+        const countries = await Stars.fetchAllCountries();
+        res.json(countries);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Erreur lors de la récupération des pays.' });
+    }
+});
+
 // Route pour rechercher des stars par pays
 router.get('/stars/country/:country', async (req, res) => {
     const country = req.params.country;

@@ -1,3 +1,4 @@
+const moment = require('moment/moment');
 const db = require('../config/config');
 
 class Stars {
@@ -19,14 +20,29 @@ class Stars {
         return db.execute('CALL InsertStar(?, ?, ?, ?, ?)', [name, formattedDateOfBirth, country, image, description]);
     }
 
-    static update(id, star) {
+   static update(id, star) {
         const { name, date_of_birth, country, image, description } = star;
-        return db.execute('CALL UpdateStar(?, ?, ?, ?, ?, ?)', [id, name, date_of_birth, country, image, description]);
+
+        // Formatez la date au format YYYY-MM-DD HH:mm:ss pour correspondre au format de la base de données
+        const formattedDateOfBirth = moment(date_of_birth).format('YYYY-MM-DD HH:mm:ss');
+
+        return db.execute('CALL UpdateStar(?, ?, ?, ?, ?, ?)', [id, name, formattedDateOfBirth, country, image, description]);
     }
 
     static delete(id) {
         return db.execute('CALL DeleteStar(?)', [id]);
     }
+
+static async fetchAllCountries() {
+    try {
+        const [rows] = await db.execute('SELECT DISTINCT country FROM stars');
+        const countries = rows.map(row => row.country);
+        return countries;
+    } catch (error) {
+        console.error(error);
+        throw error;
+    }
+}
 
     static async fetchByCountry(country) {
         try {
