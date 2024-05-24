@@ -11,7 +11,7 @@ const starsRouter = require('./routes/starsRouter');
 const MovieStarRouter = require('./routes/MovieStarRouter');
 const filtreRouterMovie = require('./routes/filtreRouterMovie');
 const contactRouter = require('./routes/contactRouter');
-const chatRouter = require('./routes/chatRouter');
+// const chatRouter = require('./routes/chatRouter');
 
 const app = express();
 
@@ -28,7 +28,7 @@ app.use('/api/stars', starsRouter);
 app.use('/api/movie-stars', MovieStarRouter);
 app.use('/filtre', filtreRouterMovie);
 app.use('/contact', contactRouter);
-app.use('/api/chat', chatRouter);
+// app.use('/api/chat', chatRouter);
 
 const PORT = process.env.PORT || 5000;
 
