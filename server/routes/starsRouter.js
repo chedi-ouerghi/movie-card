@@ -28,6 +28,7 @@ router.get('/:id', async (req, res) => {
     }
 });
 
+<<<<<<< HEAD
 
 const multer = require('multer');
 const path = require('path');
@@ -53,12 +54,23 @@ router.post('/', authenticateToken, checkRole('admin'), upload.single('image'), 
 
     try {
         const { name, date_of_birth, country, description } = starData;
+=======
+router.post('/', authenticateToken, checkRole('admin'), async (req, res) => {
+    const starData = req.body;
+
+    try {
+        const { name, date_of_birth, country, image,description } = starData;
+>>>>>>> fa07b12a2bacc6173ab53dcaf157def6a92faca8
         if (!name || !date_of_birth || !country || !image || !description) {
             return res.status(400).json({ message: 'Veuillez fournir toutes les informations nécessaires pour créer une star.' });
         }
 
+<<<<<<< HEAD
         const formattedDateOfBirth = new Date(date_of_birth).toISOString().split('T')[0];
         const [result, fields] = await Stars.create({ ...starData, image, date_of_birth: formattedDateOfBirth });
+=======
+        const [result, fields] = await Stars.create(starData);
+>>>>>>> fa07b12a2bacc6173ab53dcaf157def6a92faca8
         res.status(201).json({ message: 'Star créée avec succès.', starId: result.insertId });
     } catch (error) {
         console.error(error);
@@ -66,6 +78,7 @@ router.post('/', authenticateToken, checkRole('admin'), upload.single('image'), 
     }
 });
 
+<<<<<<< HEAD
 router.put('/:id', authenticateToken, checkRole('admin'), upload.single('image'), async (req, res) => {
     const starId = req.params.id;
     const starData = req.body;
@@ -85,6 +98,17 @@ router.put('/:id', authenticateToken, checkRole('admin'), upload.single('image')
         console.log("Données du star reçues :", { ...starData, image, userId });
     } catch (error) {
         console.error('Erreur lors de la mise à jour du star:', error);
+=======
+router.put('/:id', authenticateToken, checkRole('admin'), async (req, res) => {
+    const starId = req.params.id;
+    const starData = req.body;
+
+    try {
+        await Stars.update(starId, starData);
+        res.json({ message: 'Star mise à jour avec succès.' });
+    } catch (error) {
+        console.error(error);
+>>>>>>> fa07b12a2bacc6173ab53dcaf157def6a92faca8
         res.status(500).json({ message: 'Erreur lors de la mise à jour de la star.' });
     }
 });

@@ -4,18 +4,30 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { Input, message } from 'antd';
 import "../auth/auth.css";
+<<<<<<< HEAD
 import { useAuth } from '../../../services/AuthContext';
 
 const Login = () => {
+=======
+
+const Login = ({ setToken }) => {
+>>>>>>> fa07b12a2bacc6173ab53dcaf157def6a92faca8
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
+<<<<<<< HEAD
   const { login } = useAuth();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+=======
+  
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    
+>>>>>>> fa07b12a2bacc6173ab53dcaf157def6a92faca8
     try {
       const response = await axios.post('http://localhost:5320/api/auth/login', {
         email,
@@ -23,9 +35,17 @@ const Login = () => {
       });
 
       const tokenValue = response.data.token;
+<<<<<<< HEAD
       login(tokenValue);
       message.success('Login successful');
       navigate('/profile');
+=======
+      setToken(tokenValue);
+      message.success('Login successful');
+      localStorage.setItem('token', tokenValue);
+      navigate('/profile');
+      window.location.reload(); // Rafraîchissement de la page après la navigation
+>>>>>>> fa07b12a2bacc6173ab53dcaf157def6a92faca8
     } catch (err) {
       setError(err.response.data.message);
     }
@@ -38,7 +58,11 @@ const Login = () => {
         <div className="shape" />
       </div>
       {error && <div className="error">{error}</div>}
+<<<<<<< HEAD
       <form onSubmit={handleSubmit} className='form-login'>
+=======
+      <form onSubmit={handleSubmit}>
+>>>>>>> fa07b12a2bacc6173ab53dcaf157def6a92faca8
         <div className='div1_form'>
           <label className='label_login'>Email:</label>
           <Input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />

@@ -12,11 +12,18 @@
     padding: 20px;
     position: absolute !important;
     transform: translate(-50%, -50%) !important;
+<<<<<<< HEAD
     /* top: 53% !important; */
     /* left: 21% !important; */
     flex-direction: column;
     flex-wrap: wrap;
     width: 100%;
+=======
+    top: 53% !important;
+    left: 21% !important;
+    flex-direction: column;
+    /* flex-wrap: wrap; */
+>>>>>>> fa07b12a2bacc6173ab53dcaf157def6a92faca8
     align-content: flex-start;
 }
 

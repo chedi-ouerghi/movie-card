@@ -1,0 +1,111 @@
+@import url(https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600&display=swap);
+
+.responsive-container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    gap: 0%;
+    /* background: #0D47A1; */
+    align-items: center;
+}
+
+.feedback-section {
+  width: 60%;
+  min-width: 300px;
+}
+
+.contact-section {
+  width: 40%;
+  min-width: 300px;
+}
+
+
+
+
+
+
+.contact{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    width: 65%;
+    min-height: 72vh;
+    /* background: linear-gradient(180deg, #202020 0%, rgba(32, 32, 32, 0.2) 50%, #202020 100%), url(https://images.unsplash.com/photo-1567359781514-3b964e2b04d6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1468&q=80); */
+    /* background: #e5e5e5; */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+.contact-title{
+  color: #FFD600;
+  font-size: 2.5rem;
+}
+
+.contact-form{
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    gap: 1rem;
+    border: 1px solid #0D47A1;
+    border-radius: 1rem;
+    background: #252525;
+    max-width: 375px;
+    width: 100%;
+    height: 65vh;
+}
+
+label{
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  color: #ccc;
+}
+
+label input, label textarea{
+  background: #202020;
+  padding: .75rem;
+  font-size: 1rem;
+  border-radius: .5rem;
+  color: #e5e5e5;
+  border: 1px solid transparent;
+  transition: all .25s ease 0s
+
+}
+
+label textarea{
+  max-width: 100%;
+  max-height: 200px;
+  min-width: 200px;
+  min-height: 100px;
+}
+
+.send-btn{
+    background: linear-gradient(90deg, #FFD600 0%, #ffd5008d 100%);
+    padding: .75rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #0D47A1;
+    border-radius: 25px;
+    cursor: pointer;
+    position: relative;
+    top: -12%;
+    left: 7.5rem;
+    height: 7vh;
+    width: 30%;
+}
+
+label input:hover,
+label textarea:hover,
+label input:focus,
+label textarea:focus{
+  border-color: #4776bb;
+  box-shadow: 0 0 0 3px #0D47A1;
+}
+
+.send-btn:hover, .send-btn:focus{
+    background: linear-gradient(90deg, #0D47A1 75%, #170055 100%);
+        color: #FFD600;
+}

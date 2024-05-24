@@ -1,0 +1,58 @@
+
+.profile_container{
+
+    background-color: #d7d6cbbf;
+    height: 93vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+.profile-card {
+    max-width: 40%;
+    margin: 5% auto;
+    padding: 3%;
+    border: 0.1em solid #ccc;
+    border-radius: 0.5em;
+    box-shadow: 0 0.4em 0.6em rgba(0, 0, 0, 0.1);
+    color: aliceblue;
+    height: 63vh;
+}
+
+.profile-title {
+  text-align: center;
+  margin-bottom: 2%; /* Marge en pourcentage */
+  font-size: 1.5em; /* Taille de police en em */
+}
+
+.profile-info {
+  margin-bottom: 1.5%; /* Marge en pourcentage */
+}
+
+.profile-label {
+  font-weight: bold;
+  margin-right: 1%; /* Marge en pourcentage */
+}
+
+.profile-value {
+  margin-left: 1%; /* Marge en pourcentage */
+}
+
+.error {
+  color: red;
+  text-align: center;
+  margin-top: 1%; /* Marge en pourcentage */
+  font-size: 0.9em; /* Taille de police en em */
+}
+
+
+.modifier-profile{
+    width: 25%;
+    padding: 10px;
+    color: black;
+    background-color: #fff;
+}

@@ -44,6 +44,7 @@ router.get('/top-rated', async (req, res) => {
     }
 });
 
+<<<<<<< HEAD
 const multer = require('multer');
 const path = require('path');
 
@@ -65,10 +66,14 @@ const upload = multer({ storage: storage });
 // movieRouter.js
 router.post('/post', upload.single('image'), authenticateToken, checkRole('admin'), async (req, res) => {
     console.log('Requête reçue pour la création de film');
+=======
+router.post('/', authenticateToken, checkRole('admin'), async (req, res) => {
+>>>>>>> fa07b12a2bacc6173ab53dcaf157def6a92faca8
     const movieData = req.body;
     const userId = req.user.id;
 
     try {
+<<<<<<< HEAD
         const image = req.file ? req.file.filename : null;
         if (!image) {
             return res.status(400).json({ message: 'Image is required' });
@@ -86,11 +91,18 @@ router.post('/post', upload.single('image'), authenticateToken, checkRole('admin
         res.status(201).json({ message: 'Film créé avec succès.', movieId: result.insertId });
     } catch (error) {
         console.error('Erreur lors de la création du film:', error);
+=======
+        const [result, fields] = await Movie.create(movieData, userId);
+        res.status(201).json({ message: 'Film créé avec succès.', movieId: result.insertId });
+    } catch (error) {
+        console.error(error);
+>>>>>>> fa07b12a2bacc6173ab53dcaf157def6a92faca8
         res.status(500).json({ message: 'Erreur lors de la création du film.' });
     }
 });
 
 
+<<<<<<< HEAD
 // movieRouter.js
 router.put('/:id', upload.single('image'), authenticateToken, checkRole('admin'), async (req, res) => {
     const movieId = req.params.id;
@@ -104,13 +116,27 @@ router.put('/:id', upload.single('image'), authenticateToken, checkRole('admin')
         res.json({ message: 'Film mis à jour avec succès.' });
     } catch (error) {
         console.error('Erreur lors de la mise à jour du film:', error);
+=======
+router.put('/:id', authenticateToken, checkRole('admin'), async (req, res) => {
+    const movieId = req.params.id;
+    const movieData = req.body;
+
+    try {
+        await Movie.update(movieId, movieData);
+        res.json({ message: 'Film mis à jour avec succès.' });
+    } catch (error) {
+        console.error(error);
+>>>>>>> fa07b12a2bacc6173ab53dcaf157def6a92faca8
         res.status(500).json({ message: 'Erreur lors de la mise à jour du film.' });
     }
 });
 
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> fa07b12a2bacc6173ab53dcaf157def6a92faca8
 router.delete('/:id', authenticateToken, checkRole('admin'), async (req, res) => {
     const movieId = req.params.id;
 

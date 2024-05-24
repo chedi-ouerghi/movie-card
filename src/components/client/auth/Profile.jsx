@@ -3,40 +3,67 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './profile.css';
 import { useNavigate } from 'react-router-dom';
+<<<<<<< HEAD
 import { useAuth } from '../../../services/AuthContext';
+=======
+>>>>>>> fa07b12a2bacc6173ab53dcaf157def6a92faca8
 
 const Profile = () => {
   const [user, setUser] = useState(null);
   const [error, setError] = useState('');
   const navigate = useNavigate();
+<<<<<<< HEAD
   const { token, role } = useAuth();
 
   useEffect(() => {
     if (!token) {
+=======
+  const token = localStorage.getItem('token'); // Récupérer le token depuis le localStorage
+
+  useEffect(() => {
+    if (!token) {
+      // Rediriger vers la page de connexion si aucun token n'est présent
+>>>>>>> fa07b12a2bacc6173ab53dcaf157def6a92faca8
       navigate('/login');
     } else {
       const fetchProfile = async () => {
         try {
+<<<<<<< HEAD
           const response = await axios.get('http://localhost:5320/api/auth/profile', {
+=======
+          const response = await axios.get('http://localhost:5320/api/auth/profile/:id', {
+>>>>>>> fa07b12a2bacc6173ab53dcaf157def6a92faca8
             headers: {
               Authorization: `Bearer ${token}`,
             },
           });
+<<<<<<< HEAD
+=======
+
+>>>>>>> fa07b12a2bacc6173ab53dcaf157def6a92faca8
           setUser(response.data);
         } catch (err) {
           setError(err.response.data.message);
         }
       };
+<<<<<<< HEAD
+=======
+
+>>>>>>> fa07b12a2bacc6173ab53dcaf157def6a92faca8
       fetchProfile();
     }
   }, [token, navigate]);
 
   const handleModifyProfile = () => {
+<<<<<<< HEAD
     if (role === 'admin') {
       navigate('/admin');
     } else {
       setError('Vous n\'avez pas l\'autorisation d\'accéder à cette page.');
     }
+=======
+    navigate('/admin/');
+>>>>>>> fa07b12a2bacc6173ab53dcaf157def6a92faca8
   };
 
   if (!user) {

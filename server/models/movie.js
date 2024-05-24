@@ -16,6 +16,7 @@ class Movie {
         `;
         return db.execute(sql, [id]);
     }
+<<<<<<< HEAD
 // Movie.js
 static async create(movieData) {
     try {
@@ -64,6 +65,29 @@ static async update(id, movieData, userId, image) {
 
 
 
+=======
+
+    static async create(movieData, userId) {
+        try {
+            const { title, description, image, rating, director, trailer, top, genre, duration, origin, age } = movieData;
+            const [result, fields] = await db.execute('CALL InsertMovie(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+                [userId, title, description, image, rating, director, trailer, top, genre, duration, origin, age]);
+            return [result, fields];
+        } catch (error) {
+            throw error;
+        }
+    }
+
+static update(id, movie) {
+    const { user_id, title, description, image, rating, director, trailer, top, genre, duration, origin, age } = movie;
+    const values = [id, user_id, title, description, image, rating, director, trailer, top, genre, duration, origin, age];
+    const definedValues = values.map(value => (value !== undefined ? value : null));
+
+    return db.execute('CALL UpdateMovie(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', definedValues);
+}
+
+
+>>>>>>> fa07b12a2bacc6173ab53dcaf157def6a92faca8
     static delete(id) {
         return db.execute('DELETE FROM movies WHERE id = ?', [id]);
     }

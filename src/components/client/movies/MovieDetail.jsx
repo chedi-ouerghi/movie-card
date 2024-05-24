@@ -6,7 +6,10 @@ import ReactStars from 'react-rating-stars-component';
 import axios from 'axios';
 import './movieDetails.css';
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> fa07b12a2bacc6173ab53dcaf157def6a92faca8
 const MovieDetail = () => {
   const { id } = useParams();
   const [movie, setMovie] = useState(null);
@@ -45,12 +48,21 @@ const MovieDetail = () => {
     console.log(newRating);
   };
 
+<<<<<<< HEAD
 return (
+=======
+  return (
+    <>
+>>>>>>> fa07b12a2bacc6173ab53dcaf157def6a92faca8
   <div className="movie-card">
     <div className="container_details">
       <a href="/">
         <img
+<<<<<<< HEAD
           src={`http://localhost:5320/uploads/movies/${movie.image}`} 
+=======
+          src="/image.jpg"
+>>>>>>> fa07b12a2bacc6173ab53dcaf157def6a92faca8
           alt="cover"
           className="cover"
         />
@@ -58,6 +70,7 @@ return (
       <div className="hero">
         <div className="details">
           <div className="title1">
+<<<<<<< HEAD
             <h1>{movie.title}</h1>
           </div>
           <div className="title2"><b className="title_b">Director:</b> {movie.director}</div>
@@ -95,6 +108,58 @@ return (
   </div>
 );
 
+=======
+               <h1> {movie.title}</h1>
+                {/* <span>
+                  PG-13
+                </span> */}
+          </div>
+          <div className="title2"><b className='title_b'>Director:</b> {movie.director}</div>
+          <fieldset className="rating">
+  <ReactStars
+               count={5}
+               value={movie.rating}
+               onChange={ratingChanged}
+               size={24}
+               activeColor="#ffd700"
+               edit={false}
+               half={false}
+               classNames="rs-stars"
+             />
+           
+          </fieldset>
+          {/* <span className="likes">109 likes</span> */}
+        </div>{" "}
+        {/* end details */}
+      </div>{" "}
+      {/* end hero */}
+      <div className="description">
+        <div className="column1">
+          <span className="tag">{movie.genre}</span>
+        </div>{" "}
+        {/* end column1 */}
+        <div className="column2">
+          <p>
+          <b className='title_b'> Description:</b> {movie.description}{" "}
+            <a href="#">read more</a>
+          </p>
+          <div className="avatars">
+          <b className='title_b'> Stars:</b>   {movie.stars_names.split(', ').map((star, index) => (
+              <span key={index} className="actor">{star}{index !== movie.stars_names.split(', ').length - 1 ? ', ' : ''}</span>
+             ))}
+          </div>{" "}
+          {/* end avatars */}
+        </div>{" "}
+        {/* end column2 */}
+      </div>{" "}
+      {/* end description */}
+    </div>{" "}
+    {/* end container */}
+  </div>{" "}
+  {/* end movie-card */}
+</>
+  );
+>>>>>>> fa07b12a2bacc6173ab53dcaf157def6a92faca8
 };
 
 export default MovieDetail;

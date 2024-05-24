@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import { Link } from "react-router-dom";
+<<<<<<< HEAD
 import { Modal, Button, Popover, Select, Input, Upload, Form } from 'antd';
+=======
+import { Modal, Button, Popover, Select, Input } from 'antd';
+>>>>>>> fa07b12a2bacc6173ab53dcaf157def6a92faca8
 
 const { Option } = Select;
 const { Search } = Input;
@@ -18,8 +22,11 @@ const ListMoviesAdmin = ({ token }) => {
   const [selectedMovie, setSelectedMovie] = useState(null);
   const [popoverContent, setPopoverContent] = useState(null);
   const [popoverVisible, setPopoverVisible] = useState(false);
+<<<<<<< HEAD
     const [form] = Form.useForm();
 
+=======
+>>>>>>> fa07b12a2bacc6173ab53dcaf157def6a92faca8
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -69,6 +76,7 @@ const ListMoviesAdmin = ({ token }) => {
     }));
   };
 
+<<<<<<< HEAD
     const handleFileChange = ({ fileList }) => {
     form.setFieldsValue({ image: fileList });
   };
@@ -109,6 +117,24 @@ const handleModalSubmit = async () => {
 };
 
 
+=======
+  const handleModalSubmit = async () => {
+    try {
+      await axios.put(`${baseApiUrl}/api/movies/${selectedMovie.id}`, selectedMovie, {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
+      setMovies(prevMovies => prevMovies.map(movie => 
+        movie.id === selectedMovie.id ? selectedMovie : movie
+      ));
+      setModalVisible(false);
+    } catch (error) {
+      console.error('Error updating movie:', error);
+    }
+  };
+
+>>>>>>> fa07b12a2bacc6173ab53dcaf157def6a92faca8
   const handlePopoverOpen = async (movieId) => {
     try {
       const response = await axios.get(`${baseApiUrl}/api/movies/${movieId}`);
@@ -157,8 +183,11 @@ const handleModalSubmit = async () => {
     return <div>Loading...</div>;
   }
 
+<<<<<<< HEAD
  
 
+=======
+>>>>>>> fa07b12a2bacc6173ab53dcaf157def6a92faca8
   return (
     <div style={{ width: '75%', margin: 'auto', height: '88vh', overflowY: 'auto' }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '1rem' }}>
@@ -175,7 +204,11 @@ const handleModalSubmit = async () => {
             style={{ width: 200, marginLeft: '1em' }}
           />
         </div>
+<<<<<<< HEAD
         <button style={{ width: '15%', height: '100%', background: '#000', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+=======
+ <button style={{ width: '15%', height: '100%', background: '#000', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+>>>>>>> fa07b12a2bacc6173ab53dcaf157def6a92faca8
           <Link to='/admin/post-movie' style={{ textDecoration: 'none' }}>Post new movie</Link>
         </button>
       </div>
@@ -196,7 +229,11 @@ const handleModalSubmit = async () => {
             </tr>
           </thead>
           <tbody style={{ overflowX: 'auto' }}>
+<<<<<<< HEAD
             {filteredMovies.map((movie) => (
+=======
+           {filteredMovies.map((movie) => (
+>>>>>>> fa07b12a2bacc6173ab53dcaf157def6a92faca8
               <tr key={movie.id} style={{ borderBottom: '1px solid #ddd', backgroundColor: 'rgb(169 184 196)' }} onDoubleClick={() => handlePopoverOpen(movie.id)}>
                 <td style={{ padding: '12px', textAlign: 'left', borderRight: '1px solid #ddd' }}>{movie.id}</td>
                 <td style={{ padding: '12px', textAlign: 'left', borderRight: '1px solid #ddd' }}>{movie.title}</td>
@@ -226,6 +263,7 @@ const handleModalSubmit = async () => {
       </Popover>
 
       {/* Modal for editing movie */}
+<<<<<<< HEAD
       <Modal
         title="Edit Movie"
         open={modalVisible}
@@ -311,8 +349,94 @@ const handleModalSubmit = async () => {
           </div>
         )}
       </Modal>
+=======
+     <Modal
+  title="Edit Movie"
+  open={modalVisible}
+  onCancel={handleModalClose}
+  footer={[
+    <Button key="cancel" onClick={handleModalClose}>
+      Cancel
+    </Button>,
+    <Button key="submit" type="primary" onClick={handleModalSubmit}>
+      Save Changes
+    </Button>,
+  ]}
+>
+  {/* Form for editing movie */}
+  {selectedMovie && (
+    <div>
+      <p>Title:</p>
+      <Input
+        value={selectedMovie.title}
+        onChange={(e) => handleInputChange('title', e.target.value)}
+      />
+      <p>Description:</p>
+      <Input.TextArea
+        value={selectedMovie.description}
+        onChange={(e) => handleInputChange('description', e.target.value)}
+      />
+      <p>Image:</p>
+      <Input
+        value={selectedMovie.image}
+        onChange={(e) => handleInputChange('image', e.target.value)}
+      />
+      <p>Rating:</p>
+      <Input
+        value={selectedMovie.rating}
+        onChange={(e) => handleInputChange('rating', e.target.value)}
+      />
+      <p>Director:</p>
+      <Input
+        value={selectedMovie.director}
+        onChange={(e) => handleInputChange('director', e.target.value)}
+      />
+      <p>Trailer:</p>
+      <Input
+        value={selectedMovie.trailer}
+        onChange={(e) => handleInputChange('trailer', e.target.value)}
+      />
+      <p>Top:</p>
+      <Input
+        value={selectedMovie.top}
+        onChange={(e) => handleInputChange('top', e.target.value)}
+      />
+      <p>Genre:</p>
+      <Input
+        value={selectedMovie.genre}
+        onChange={(e) => handleInputChange('genre', e.target.value)}
+      />
+      <p>Date Insert:</p>
+      <Input
+        value={selectedMovie.date_insert}
+        onChange={(e) => handleInputChange('date_insert', e.target.value)}
+      />
+      <p>Duration:</p>
+      <Input
+        value={selectedMovie.duration}
+        onChange={(e) => handleInputChange('duration', e.target.value)}
+      />
+      <p>Origin:</p>
+      <Input
+        value={selectedMovie.origin}
+        onChange={(e) => handleInputChange('origin', e.target.value)}
+      />
+      <p>Age:</p>
+      <Input
+        value={selectedMovie.age}
+        onChange={(e) => handleInputChange('age', e.target.value)}
+      />
+    </div>
+  )}
+</Modal>
+
+>>>>>>> fa07b12a2bacc6173ab53dcaf157def6a92faca8
     </div>
   );
 };
 
 export default ListMoviesAdmin;
+<<<<<<< HEAD
+=======
+
+>>>>>>> fa07b12a2bacc6173ab53dcaf157def6a92faca8

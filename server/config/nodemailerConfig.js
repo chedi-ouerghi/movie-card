@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 const nodemailer = require('nodemailer');
 
 const sendEmail = (name, email, message, res) => {
@@ -33,3 +34,18 @@ const sendEmail = (name, email, message, res) => {
 };
 
 module.exports = { sendEmail };
+=======
+
+const nodemailer = require('nodemailer');
+
+
+const transporter = nodemailer.createTransport({
+  service: 'Gmail', 
+  auth: {
+    user: 'votre_adresse@gmail.com', 
+    pass: 'votre_mot_de_passe', 
+  },
+});
+
+module.exports = transporter;
+>>>>>>> fa07b12a2bacc6173ab53dcaf157def6a92faca8

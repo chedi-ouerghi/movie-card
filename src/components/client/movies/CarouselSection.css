@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 .container {
   height: 100%;
@@ -223,3 +224,89 @@
     width: 150px;
   }
 }
+=======
+.ant-carousel {
+    width: 65%;
+    height: 71%;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    background-color: #fff;
+    border-radius: 0;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+}
+
+    .ant-carousel .slick-slide {
+      text-align: center;
+      height: 100%;
+      line-height: 160px;
+      background: #364d79;
+      overflow: hidden;
+    }
+
+    .ant-carousel .slick-slide h3 {
+      color: #fff;
+    }
+
+.slick-slider {
+  height: 100%;
+  width: 100%;
+}
+
+.slick-track {
+    opacity: 1;
+    transform: translate3d(0px, 0px, 0px);
+    width: 1500px;
+    height: 100%;
+}
+
+.slick-list {
+  width: 100%;
+  height: 100%;
+}
+
+.blur-image-carousel {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card-img-carousel {
+    position: relative;
+    width: 100%;
+    height: 60vh;
+    z-index: 1;
+}
+
+.card-overlay-carousel {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+        background-color: rgb(48 39 39 / 83%);
+    color: #fff;
+    height: 10vh;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Styles pour le titre et la note avec z-index */
+.card-title {
+  font-size: 18px;
+  font-weight: bold;
+  position: relative;
+  z-index: 2; 
+      color: #0D47A1;
+}
+
+.card-rating {
+  font-size: 14px;
+  position: relative;
+  z-index: 2; 
+  color: #FFD600;
+}
+
+>>>>>>> fa07b12a2bacc6173ab53dcaf157def6a92faca8

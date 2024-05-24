@@ -9,7 +9,11 @@ const BestStars = () => {
   useEffect(() => {
     const fetchBestStars = async () => {
       try {
+<<<<<<< HEAD
         const response = await axios.get("http://localhost:5320/filtre/stars/best");
+=======
+        const response = await axios.get("http://localhost:5320/filtre/best-stars");
+>>>>>>> fa07b12a2bacc6173ab53dcaf157def6a92faca8
         setBestStars(response.data);
       } catch (error) {
         console.error("Error fetching best stars:", error);

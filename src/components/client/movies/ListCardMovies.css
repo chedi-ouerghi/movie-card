@@ -3,9 +3,14 @@
 .list_div_movies {
     padding: 20px;
     /* background: linear-gradient(to bottom, #ffefba, #ffffff); */
+<<<<<<< HEAD
      /* background:  linear-gradient(to bottom, rgba(255, 106, 0, 0.732), rgba(3, 32, 5, 0.732)), url('C:\Users\chedi\movie-card\public\image.jpg'); */
     background: #000;
      overflow-y: auto;
+=======
+     background:  linear-gradient(to bottom, rgba(255, 106, 0, 0.732), rgba(3, 32, 5, 0.732)), url('C:\Users\chedi\movie-card\public\image.jpg');
+    overflow-y: auto;
+>>>>>>> fa07b12a2bacc6173ab53dcaf157def6a92faca8
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -27,9 +32,13 @@
   border-radius: 4px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.3s ease;
+<<<<<<< HEAD
   background: #000;
   color: #fff;
       margin-top: 0 !important;
+=======
+  background: #fff;
+>>>>>>> fa07b12a2bacc6173ab53dcaf157def6a92faca8
 }
 
 .search-input:focus {
@@ -47,6 +56,7 @@
     gap: 10px;
     justify-content: flex-start;
     width: 91rem;
+<<<<<<< HEAD
     margin: 1% 0;
 }
 
@@ -58,6 +68,18 @@
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     width: 19%;
+=======
+}
+
+.movie-card_movies {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 23%;
+>>>>>>> fa07b12a2bacc6173ab53dcaf157def6a92faca8
     height: 55vh;
 }
 
@@ -211,6 +233,7 @@ margin-bottom: 15px;
 } */
 
 
+<<<<<<< HEAD
 
 .title_link_movies_home{
     width: 100%;
@@ -288,3 +311,5 @@ border-radius: 25px;
   color: #0D47A1;
   cursor: pointer;
 }
+=======
+>>>>>>> fa07b12a2bacc6173ab53dcaf157def6a92faca8

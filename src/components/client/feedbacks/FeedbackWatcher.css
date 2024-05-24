@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 .section_feedback-watcher {
     position: relative;
@@ -21,6 +22,18 @@
     /* background: #fef5f50a; */
     height: 74vh;
   }
+=======
+.feedback-watcher {
+    width: 60%;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+    height: 74vh;
+}
+>>>>>>> fa07b12a2bacc6173ab53dcaf157def6a92faca8
 
 .feedback-watcher h2 {
   text-align: center;

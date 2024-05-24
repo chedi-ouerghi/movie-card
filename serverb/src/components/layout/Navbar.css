@@ -1,0 +1,103 @@
+
+
+body {
+  margin: 0px;
+  font-family: 'segoe ui';
+}
+
+.nav {
+    height: auto;
+    min-height: 7vh;
+    width: 100%;
+    background-color: #0a0c0d; /* Rendre la barre de navigation transparente */
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    align-content: center;
+    backdrop-filter: blur(10px); /* Ajouter l'effet de flou */
+}
+
+.nav > .nav-header {
+display: inline;
+    position: relative;
+    left: 2%;}
+
+.nav > .nav-header > .nav-title {
+  display: inline-block;
+  font-size: 22px;
+  color: #BDBDBD;
+  padding: 10px 10px;
+}
+
+
+.nav > .nav-btn {
+  display: none;
+}
+
+.nav > .nav-links {
+    display: flex;
+    font-size: 18px;
+    width: auto;
+    justify-content: center;
+    align-items: center;
+    gap: 1%;
+}
+
+.nav > .nav-links > a {
+  display: inline-block;
+  padding: 13px 10px 13px 10px;
+  text-decoration: none;
+  color: #BDBDBD;
+}
+
+.nav > .nav-links > a:hover {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.nav > #nav-check {
+  display: none;
+}
+
+.buttons-user-group{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 7vh;
+}
+
+.group-input-rating{
+  display: flex;
+   justify-content: space-between ;
+   align-items: center;
+       height: 10vh;
+    width: 100%;
+
+}
+
+
+.search-input{
+  height: 5vh;
+  width: auto;
+}
+
+#btn_nav {
+      margin-top: 0 !important;
+    width: 5rem;
+    height: 5vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #FFD600;
+    color: #0D47A1;
+    padding: 15px 0;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 25px;
+    cursor: pointer;
+    border: 2px solid #FFD600;
+    margin-left: 5px;
+}

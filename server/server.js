@@ -11,6 +11,7 @@ const starsRouter = require('./routes/starsRouter');
 const MovieStarRouter = require('./routes/MovieStarRouter');
 const filtreRouterMovie = require('./routes/filtreRouterMovie');
 const contactRouter = require('./routes/contactRouter');
+<<<<<<< HEAD
 // const chatRouter = require('./routes/chatRouter');
 
 const app = express();
@@ -21,14 +22,27 @@ app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 
 const path = require('path');
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+=======
+const app = express();
+
+app.use(cors());
+app.use(bodyParser.json());
+>>>>>>> fa07b12a2bacc6173ab53dcaf157def6a92faca8
 
 app.use('/api/movies', moviesRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/stars', starsRouter);
 app.use('/api/movie-stars', MovieStarRouter);
 app.use('/filtre', filtreRouterMovie);
+<<<<<<< HEAD
 app.use('/contact', contactRouter);
 // app.use('/api/chat', chatRouter);
+=======
+app.use('/contact', contactRouter); 
+
+
+
+>>>>>>> fa07b12a2bacc6173ab53dcaf157def6a92faca8
 
 const PORT = process.env.PORT || 5000;
 

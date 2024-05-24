@@ -4,7 +4,10 @@ import { Button, Checkbox, List, Divider, Select, Popover } from 'antd';
 
 const { Option } = Select;
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> fa07b12a2bacc6173ab53dcaf157def6a92faca8
 const MovieStarForm = () => {
   const [movieStarData, setMovieStarData] = useState({
     movie_id: null,

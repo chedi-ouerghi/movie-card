@@ -56,7 +56,11 @@
     display: flex;
     gap: 20px;
     padding: 20px;
+<<<<<<< HEAD
   /* background:  linear-gradient(to bottom, rgb(255, 255, 255), rgb(0, 0, 0))
+=======
+  /* background:  linear-gradient(to bottom, rgb(255, 255, 255), rgb(0, 0, 0)), url('C:\Users\chedi\movie-card\public\image.jpg'); */
+>>>>>>> fa07b12a2bacc6173ab53dcaf157def6a92faca8
   /* color: #fff; */
     line-height: 1.6;
     position: relative;
@@ -66,6 +70,7 @@
     flex-direction: column;
 }
 
+<<<<<<< HEAD
 
 .banner_section{
     display: flex;
@@ -119,7 +124,54 @@
 .movie-card_component:hover,
 .movie-card_component:focus {
     transform: scale(1.05);
+=======
+
+.banner_section{
+    display: flex;
+    width: 100%;
+    height: 90vh;
+    gap: 1%;
+ background:  linear-gradient(to bottom, rgba(255, 106, 0, 0.732), rgba(3, 32, 5, 0.732)), url('C:\Users\chedi\movie-card\public\image.jpg');
+  background-size: cover;
+  backdrop-filter: blur(10px);
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  text-align: center;
+  padding: 20px;}
+
+
+.list_cards {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    /* background-color: #fff; */
+    color: #000; /* Changement de la couleur du texte pour être visible sur fond blanc */
+    line-height: 1.6;
+    position: relative;
+    overflow-x: auto;
+    overflow-y: hidden;
+    font-family: sans-serif;
+    height: 25rem;
+    width: 100%;
+    flex-wrap: nowrap;
+    white-space: nowrap; 
+        border-radius: 5px;
 }
+
+.movie-card {
+    min-width: calc(25% - 49px); /* Utilisez min-width au lieu de width */
+    height: 50vh;
+    border: 1px solid #e1e4e8;
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 0 10px; /* Ajustez la marge pour mieux s'adapter */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    perspective: 1000px;
+>>>>>>> fa07b12a2bacc6173ab53dcaf157def6a92faca8
+}
+
 
 .card-img {
     width: 100%;
@@ -138,6 +190,7 @@
 }
 
 .card-overlay {
+<<<<<<< HEAD
     position: absolute;
     top: 0;
     left: 0;
@@ -154,6 +207,23 @@
     transform: translateY(100%);
     transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
     border-radius: 0 0 25px 25px;
+=======
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.7); /* Couleur d'arrière-plan de l'overlay */
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  opacity: 0;
+  transform: translateY(100%);
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+>>>>>>> fa07b12a2bacc6173ab53dcaf157def6a92faca8
 }
 
 .movie-card_component:hover .blur-image,
@@ -182,7 +252,11 @@
 }
 
 .card-overlay .card-text {
+<<<<<<< HEAD
     margin-bottom: 15px;
+=======
+margin-bottom: 15px;
+>>>>>>> fa07b12a2bacc6173ab53dcaf157def6a92faca8
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
@@ -208,10 +282,19 @@
 }
 
 .view_movie:hover {
+<<<<<<< HEAD
     background: #FFD600;
     color: #0D47A1;
     box-shadow: 0px 0px 10px rgba(0, 123, 255, 0.5);
 }
+=======
+  background: #FFD600;
+  color: #0D47A1;
+  box-shadow: 0px 0px 10px rgba(0, 123, 255, 0.5);
+}
+
+
+>>>>>>> fa07b12a2bacc6173ab53dcaf157def6a92faca8
 /* Responsive pour .App */
 @media (max-width: 768px) {
   .App {
@@ -231,6 +314,18 @@
 }
 
 
+<<<<<<< HEAD
+=======
+.search-title,
+.filtered-movies-title,
+.top-rated-movies-title,
+.actors-movies-title {
+  font-size: 1.5rem;
+  color: #000000;
+}
+
+
+>>>>>>> fa07b12a2bacc6173ab53dcaf157def6a92faca8
 .footer {
   height: 7vh;
   display: flex;
@@ -242,6 +337,9 @@
   bottom: 0;
   width: 100%;
 }
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> fa07b12a2bacc6173ab53dcaf157def6a92faca8

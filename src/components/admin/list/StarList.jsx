@@ -2,10 +2,14 @@ import React, { useState, useEffect } from 'react';
 import starService from '../../../services/starService';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+<<<<<<< HEAD
 import { Form, Input, Button, Upload, message, Select, Modal, Popover } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
 
 const { TextArea } = Input;
+=======
+import { Modal, Button, Popover, Select, Input } from 'antd';
+>>>>>>> fa07b12a2bacc6173ab53dcaf157def6a92faca8
 
 const { Option } = Select;
 const { Search } = Input;
@@ -22,8 +26,11 @@ const StarList = ({ token }) => {
     const [selectedCountry, setSelectedCountry] = useState(null);
     const [searchValue, setSearchValue] = useState('');
     const [modalVisible, setModalVisible] = useState(false);
+<<<<<<< HEAD
     const [form] = Form.useForm();
     const [selectedStar, setSelectedStar] = useState(null);
+=======
+>>>>>>> fa07b12a2bacc6173ab53dcaf157def6a92faca8
 
     useEffect(() => {
         const fetchStars = async () => {
@@ -62,6 +69,7 @@ const StarList = ({ token }) => {
 
         fetchCountrys();
     }, []);
+<<<<<<< HEAD
 
     const handleChange = (e) => {
         setSelectedStar({ ...selectedStar, [e.target.name]: e.target.value });
@@ -112,16 +120,46 @@ const handleModalSubmit = async () => {
 
     const handleModalOpen = (star) => {
         setSelectedStar(star);
+=======
+    
+    const handleModalOpen = (star) => {
+        setSelectedCountry(star);
+>>>>>>> fa07b12a2bacc6173ab53dcaf157def6a92faca8
         setModalVisible(true);
     };
 
     const handleInputChange = (field, value) => {
+<<<<<<< HEAD
         setSelectedStar(prevStar => ({
             ...prevStar,
+=======
+        setSelectedCountry(prevstar => ({
+            ...prevstar,
+>>>>>>> fa07b12a2bacc6173ab53dcaf157def6a92faca8
             [field]: value
         }));
     };
 
+<<<<<<< HEAD
+=======
+    const handleModalSubmit = async () => {
+        try {
+            await axios.put(`${baseApiUrl}/api/stars/${selectedCountry.id}`, selectedCountry, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+            setStars(prevStars => prevStars.map(star => 
+                star.id === selectedCountry.id ? selectedCountry : star
+            ));
+            setModalVisible(false);
+        } catch (error) {
+            console.error('Error updating star:', error);
+            // Gérer l'erreur ici (par exemple, afficher un message d'erreur à l'utilisateur)
+        }
+    };
+
+>>>>>>> fa07b12a2bacc6173ab53dcaf157def6a92faca8
     const handlePopoverOpen = async (starId) => {
         try {
             const response = await axios.get(`${baseApiUrl}/api/stars/${starId}`);
@@ -198,7 +236,11 @@ const handleModalSubmit = async () => {
                     <tbody>
                         {filteredStars.map(star => (
                             <tr key={star.id} style={{ borderBottom: '1px solid #ddd',backgroundColor: 'rgb(169 184 196)'  }} onDoubleClick={() => handlePopoverOpen(star.id)}>
+<<<<<<< HEAD
                                 <td style={{ padding: '10px', textAlign: 'left' }}><img src={`http://localhost:5320/uploads/stars/${star.image}`} alt={star.name} style={{ width: '50px', height: 'auto' }} /></td>
+=======
+                                <td style={{ padding: '10px', textAlign: 'left' }}><img src={star.image} alt={star.name} style={{ width: '50px', height: 'auto' }} /></td>
+>>>>>>> fa07b12a2bacc6173ab53dcaf157def6a92faca8
                                 <td style={{ padding: '10px', textAlign: 'left' }}>{star.name}</td>
                                 <td style={{ padding: '10px', textAlign: 'left' }}>{star.date_of_birth}</td>
                                 <td style={{ padding: '10px', textAlign: 'left' }}>{star.country}</td>
@@ -220,6 +262,7 @@ const handleModalSubmit = async () => {
         <div />
       </Popover>
 
+<<<<<<< HEAD
 <Modal
     title="Edit star"
     visible={modalVisible}
@@ -268,6 +311,57 @@ const handleModalSubmit = async () => {
 
 </Modal>
 
+=======
+              <Modal
+  title="Edit star"
+  open={modalVisible}
+  onCancel={handleModalClose}
+  footer={[
+    <Button key="cancel" onClick={handleModalClose}>
+      Cancel
+    </Button>,
+    <Button key="submit" type="primary" onClick={handleModalSubmit}>
+      Save Changes
+    </Button>,
+  ]}
+>
+  {/* Form for editing star */}
+  {selectedCountry && (
+    <div>
+      <p>Name:</p>
+      <Input
+        value={selectedCountry.name}
+        onChange={(e) => handleInputChange('name', e.target.value)}
+      />
+      <p>date_of_birth:</p>
+      <Input.TextArea
+        value={selectedCountry.date_of_birth}
+        onChange={(e) => handleInputChange('date_of_birth', e.target.value)}
+      />
+      <p>Image:</p>
+      <Input
+        value={selectedCountry.image}
+        onChange={(e) => handleInputChange('image', e.target.value)}
+      />
+      <p>country:</p>
+      <Input
+        value={selectedCountry.country}
+        onChange={(e) => handleInputChange('country', e.target.value)}
+      />
+      <p>description:</p>
+      <Input
+        value={selectedCountry.description}
+        onChange={(e) => handleInputChange('description', e.target.value)}
+      />
+      <p>Date Insert:</p>
+      <Input
+        value={selectedCountry.date_insert}
+        onChange={(e) => handleInputChange('date_insert', e.target.value)}
+      />
+    </div>
+  )}
+            </Modal>
+>>>>>>> fa07b12a2bacc6173ab53dcaf157def6a92faca8
             
         </div>
     );

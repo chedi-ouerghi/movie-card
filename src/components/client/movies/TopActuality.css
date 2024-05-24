@@ -1,14 +1,20 @@
 .section_topActuality {
     position: relative;
     top: 15%;
+<<<<<<< HEAD
     height: 100%;
     width: 35%;
+=======
+    height: 61vh;
+    width: 100%;
+>>>>>>> fa07b12a2bacc6173ab53dcaf157def6a92faca8
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
 }
 
+<<<<<<< HEAD
 .actuality-movies-title{
     width: 100%;
     display: flex;
@@ -74,6 +80,31 @@
 
 .movie-actuality:nth-child(odd) {
     margin-left: 0;
+=======
+.movies-container_actuality {
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  overflow-x: hidden;
+  max-height: 400px; 
+  width: 100%;
+  position: relative;
+  padding: 10px;
+}
+
+
+.movie-actuality {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    padding: 10px;
+    width: 90%;
+    height: 40vh;
+}
+
+.movie-actuality:nth-child(odd) {
+    margin-left: 30px;
+>>>>>>> fa07b12a2bacc6173ab53dcaf157def6a92faca8
 }
 
 .movie-actuality:nth-child(even) {
@@ -81,6 +112,7 @@
 }
 
 
+<<<<<<< HEAD
 .movie-content_actuality {
   display: flex;
   justify-content: space-between;
@@ -134,6 +166,16 @@ color: #fff;
   color: #fff;
   border: 2px solid #0D47A1 ;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+=======
+.movie-title_actuality {
+    margin-top: 0;
+    color: cadetblue;
+    text-decoration: underline;
+    font-family: cursive;}
+
+.movie-data_actuality {
+  margin-bottom: 0;
+>>>>>>> fa07b12a2bacc6173ab53dcaf157def6a92faca8
 }
 
 .age-red {
@@ -142,6 +184,10 @@ color: #fff;
     border-radius: 50px;
     font-size: 20px;
     padding: 5px;
+<<<<<<< HEAD
     position: relative;
     left: 30%;
 }
+=======
+}
+>>>>>>> fa07b12a2bacc6173ab53dcaf157def6a92faca8

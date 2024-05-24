@@ -33,7 +33,11 @@ background: linear-gradient(#1845ad, #23a2f6);
     right: -15px;
     bottom: -80px;
 }
+<<<<<<< HEAD
 .form-login{
+=======
+form{
+>>>>>>> fa07b12a2bacc6173ab53dcaf157def6a92faca8
 height: 60vh;
     width: 25%;
     background-color: rgb(163 163 163 / 42%);
@@ -222,7 +226,11 @@ button{
         width: 100px;
     }
 
+<<<<<<< HEAD
     .form-login {
+=======
+    form {
+>>>>>>> fa07b12a2bacc6173ab53dcaf157def6a92faca8
         height: auto;
         width: 80%;
         padding: 15px;

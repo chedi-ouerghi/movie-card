@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> fa07b12a2bacc6173ab53dcaf157def6a92faca8
 const Top10MoviesDATE = () => {
   const [topRatedMovies, setTopRatedMovies] = useState([]);
 
