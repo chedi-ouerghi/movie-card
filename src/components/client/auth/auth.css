@@ -33,7 +33,7 @@ background: linear-gradient(#1845ad, #23a2f6);
     right: -15px;
     bottom: -80px;
 }
-form{
+.form-login{
 height: 60vh;
     width: 25%;
     background-color: rgb(163 163 163 / 42%);
@@ -222,7 +222,7 @@ button{
         width: 100px;
     }
 
-    form {
+    .form-login {
         height: auto;
         width: 80%;
         padding: 15px;

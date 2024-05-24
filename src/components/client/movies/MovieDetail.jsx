@@ -44,13 +44,12 @@ const MovieDetail = () => {
     console.log(newRating);
   };
 
-  return (
-    <>
+return (
   <div className="movie-card">
     <div className="container_details">
       <a href="/">
         <img
-          src="/image.jpg"
+          src={`http://localhost:5320/uploads/movies/${movie.image}`} 
           alt="cover"
           className="cover"
         />
@@ -58,56 +57,43 @@ const MovieDetail = () => {
       <div className="hero">
         <div className="details">
           <div className="title1">
-               <h1> {movie.title}</h1>
-                {/* <span>
-                  PG-13
-                </span> */}
+            <h1>{movie.title}</h1>
           </div>
-          <div className="title2"><b className='title_b'>Director:</b> {movie.director}</div>
+          <div className="title2"><b className="title_b">Director:</b> {movie.director}</div>
           <fieldset className="rating">
-  <ReactStars
-               count={5}
-               value={movie.rating}
-               onChange={ratingChanged}
-               size={24}
-               activeColor="#ffd700"
-               edit={false}
-               half={false}
-               classNames="rs-stars"
-             />
-           
+            <ReactStars
+              count={5}
+              value={movie.rating}
+              onChange={ratingChanged}
+              size={24}
+              activeColor="#ffd700"
+              edit={false}
+              half={false}
+              classNames="rs-stars"
+            />
           </fieldset>
-          {/* <span className="likes">109 likes</span> */}
-        </div>{" "}
-        {/* end details */}
-      </div>{" "}
-      {/* end hero */}
+        </div>
+      </div>
       <div className="description">
         <div className="column1">
           <span className="tag">{movie.genre}</span>
-        </div>{" "}
-        {/* end column1 */}
+        </div>
         <div className="column2">
           <p>
-          <b className='title_b'> Description:</b> {movie.description}{" "}
+            <b className="title_b">Description:</b> {movie.description}{" "}
             <a href="#">read more</a>
           </p>
           <div className="avatars">
-          <b className='title_b'> Stars:</b>   {movie.stars_names.split(', ').map((star, index) => (
+            <b className="title_b">Stars:</b> {movie.stars_names.split(', ').map((star, index) => (
               <span key={index} className="actor">{star}{index !== movie.stars_names.split(', ').length - 1 ? ', ' : ''}</span>
-             ))}
-          </div>{" "}
-          {/* end avatars */}
-        </div>{" "}
-        {/* end column2 */}
-      </div>{" "}
-      {/* end description */}
-    </div>{" "}
-    {/* end container */}
-  </div>{" "}
-  {/* end movie-card */}
-</>
-  );
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+);
+
 };
 
 export default MovieDetail;

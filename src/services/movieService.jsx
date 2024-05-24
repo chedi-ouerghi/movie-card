@@ -4,7 +4,7 @@ const API_URL = 'http://localhost:5320/api/movies';
 
 const movieService = {
     getAllMovies: async () => {
-        const response = await axios.get(API_URL);
+        const response = await axios.get(`${API_URL}?limit=10`);
         return response.data;
     },
 
@@ -13,10 +13,13 @@ const movieService = {
         return response.data;
     },
 
-    createMovie: async (movieData, headers) => {
-        const response = await axios.post(API_URL, movieData, {   headers: {
-            'Authorization': `Bearer ${localStorage.getItem('token')}`
-          } });
+    createMovie: async (movieData) => {
+        const response = await axios.post(`${API_URL}/post`, movieData, {
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                'Content-Type': 'multipart/form-data'
+            }
+        });
         return response.data;
     },
 

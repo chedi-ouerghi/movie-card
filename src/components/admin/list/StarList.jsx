@@ -2,7 +2,10 @@ import React, { useState, useEffect } from 'react';
 import starService from '../../../services/starService';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { Modal, Button, Popover, Select, Input } from 'antd';
+import { Form, Input, Button, Upload, message, Select, Modal, Popover } from 'antd';
+import { UploadOutlined } from '@ant-design/icons';
+
+const { TextArea } = Input;
 
 const { Option } = Select;
 const { Search } = Input;
@@ -19,6 +22,8 @@ const StarList = ({ token }) => {
     const [selectedCountry, setSelectedCountry] = useState(null);
     const [searchValue, setSearchValue] = useState('');
     const [modalVisible, setModalVisible] = useState(false);
+    const [form] = Form.useForm();
+    const [selectedStar, setSelectedStar] = useState(null);
 
     useEffect(() => {
         const fetchStars = async () => {
@@ -57,34 +62,64 @@ const StarList = ({ token }) => {
 
         fetchCountrys();
     }, []);
+
+    const handleChange = (e) => {
+        setSelectedStar({ ...selectedStar, [e.target.name]: e.target.value });
+    };
+
+    const handleFileChange = ({ fileList }) => {
+        form.setFieldsValue({ image: fileList });
+    };
+
+const handleModalSubmit = async () => {
+    const formData = new FormData();
+    formData.append('name', selectedStar.name);
+    formData.append('date_of_birth', selectedStar.date_of_birth);
+    formData.append('country', selectedStar.country);
+    formData.append('description', selectedStar.description);
+
+    const image = form.getFieldValue('image');
+    if (image && image.length > 0 && image[0].originFileObj) {
+        formData.append('image', image[0].originFileObj);
+    }
     
+    try {
+        // Mettre à jour selectedStar avec les nouvelles valeurs
+        setSelectedStar(prevStar => ({
+            ...prevStar,
+            name: formData.get('name'),
+            date_of_birth: formData.get('date_of_birth'),
+            country: formData.get('country'),
+            description: formData.get('description'),
+            image: formData.get('image')
+        }));
+        
+        await axios.put(`${baseApiUrl}/api/stars/${selectedStar.id}`, formData, {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+        setStars(prevStars => prevStars.map(star => 
+            star.id === selectedStar.id ? selectedStar : star
+        ));
+        setModalVisible(false);
+    } catch (error) {
+        console.error('Error updating star:', error);
+        // Gérer l'erreur ici (par exemple, afficher un message d'erreur à l'utilisateur)
+    }
+};
+
+
     const handleModalOpen = (star) => {
-        setSelectedCountry(star);
+        setSelectedStar(star);
         setModalVisible(true);
     };
 
     const handleInputChange = (field, value) => {
-        setSelectedCountry(prevstar => ({
-            ...prevstar,
+        setSelectedStar(prevStar => ({
+            ...prevStar,
             [field]: value
         }));
-    };
-
-    const handleModalSubmit = async () => {
-        try {
-            await axios.put(`${baseApiUrl}/api/stars/${selectedCountry.id}`, selectedCountry, {
-                headers: {
-                    'Authorization': `Bearer ${token}`
-                }
-            });
-            setStars(prevStars => prevStars.map(star => 
-                star.id === selectedCountry.id ? selectedCountry : star
-            ));
-            setModalVisible(false);
-        } catch (error) {
-            console.error('Error updating star:', error);
-            // Gérer l'erreur ici (par exemple, afficher un message d'erreur à l'utilisateur)
-        }
     };
 
     const handlePopoverOpen = async (starId) => {
@@ -163,7 +198,7 @@ const StarList = ({ token }) => {
                     <tbody>
                         {filteredStars.map(star => (
                             <tr key={star.id} style={{ borderBottom: '1px solid #ddd',backgroundColor: 'rgb(169 184 196)'  }} onDoubleClick={() => handlePopoverOpen(star.id)}>
-                                <td style={{ padding: '10px', textAlign: 'left' }}><img src={star.image} alt={star.name} style={{ width: '50px', height: 'auto' }} /></td>
+                                <td style={{ padding: '10px', textAlign: 'left' }}><img src={`http://localhost:5320/uploads/stars/${star.image}`} alt={star.name} style={{ width: '50px', height: 'auto' }} /></td>
                                 <td style={{ padding: '10px', textAlign: 'left' }}>{star.name}</td>
                                 <td style={{ padding: '10px', textAlign: 'left' }}>{star.date_of_birth}</td>
                                 <td style={{ padding: '10px', textAlign: 'left' }}>{star.country}</td>
@@ -185,55 +220,54 @@ const StarList = ({ token }) => {
         <div />
       </Popover>
 
-              <Modal
-  title="Edit star"
-  open={modalVisible}
-  onCancel={handleModalClose}
-  footer={[
-    <Button key="cancel" onClick={handleModalClose}>
-      Cancel
-    </Button>,
-    <Button key="submit" type="primary" onClick={handleModalSubmit}>
-      Save Changes
-    </Button>,
-  ]}
+<Modal
+    title="Edit star"
+    visible={modalVisible}
+    onCancel={handleModalClose}
+    footer={[
+        <Button key="cancel" onClick={handleModalClose}>
+            Cancel
+        </Button>,
+        <Button key="submit" type="primary" onClick={handleModalSubmit}>
+            Save Changes
+        </Button>,
+    ]}
 >
-  {/* Form for editing star */}
-  {selectedCountry && (
+   {selectedStar && (
     <div>
-      <p>Name:</p>
-      <Input
-        value={selectedCountry.name}
-        onChange={(e) => handleInputChange('name', e.target.value)}
-      />
-      <p>date_of_birth:</p>
-      <Input.TextArea
-        value={selectedCountry.date_of_birth}
-        onChange={(e) => handleInputChange('date_of_birth', e.target.value)}
-      />
-      <p>Image:</p>
-      <Input
-        value={selectedCountry.image}
-        onChange={(e) => handleInputChange('image', e.target.value)}
-      />
-      <p>country:</p>
-      <Input
-        value={selectedCountry.country}
-        onChange={(e) => handleInputChange('country', e.target.value)}
-      />
-      <p>description:</p>
-      <Input
-        value={selectedCountry.description}
-        onChange={(e) => handleInputChange('description', e.target.value)}
-      />
-      <p>Date Insert:</p>
-      <Input
-        value={selectedCountry.date_insert}
-        onChange={(e) => handleInputChange('date_insert', e.target.value)}
-      />
+        <p>Name:</p>
+        <Input value={selectedStar.name} name="name" onChange={handleChange} />
+
+        <p>date_of_birth:</p>
+        <Input type='date' value={selectedStar.date_of_birth} onChange={(e) => handleInputChange('date_of_birth', e.target.value)} />
+
+        <p>Image:</p>
+        <Upload
+            accept="image/*"
+            multiple={false}
+            beforeUpload={() => false}
+            fileList={form.getFieldValue('image') || []}
+            onChange={handleFileChange}
+        >
+            <Button>Select Image</Button>
+        </Upload>
+
+        <p>country:</p>
+        <Input value={selectedStar.country} name="country" onChange={handleChange} />
+
+        <p>description:</p>
+        <TextArea value={selectedStar.description} name="description" onChange={(e) => handleInputChange('description', e.target.value)} />
+
+        <p>Date Insert:</p>
+        <Input
+            value={selectedStar.date_insert}
+            onChange={(e) => handleInputChange('date_insert', e.target.value)}
+        />
     </div>
-  )}
-            </Modal>
+)}
+
+</Modal>
+
             
         </div>
     );

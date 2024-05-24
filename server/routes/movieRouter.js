@@ -44,32 +44,71 @@ router.get('/top-rated', async (req, res) => {
     }
 });
 
-router.post('/', authenticateToken, checkRole('admin'), async (req, res) => {
+const multer = require('multer');
+const path = require('path');
+
+// Configuration de Multer pour stocker les fichiers téléchargés
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    const uploadPath = path.resolve(__dirname, '../uploads/movies');
+    cb(null, uploadPath);
+  },
+  filename: function (req, file, cb) {
+    const uniqueSuffix = Date.now() + '-' + file.originalname;
+    cb(null, uniqueSuffix);
+  },
+});
+
+const upload = multer({ storage: storage });
+
+
+// movieRouter.js
+router.post('/post', upload.single('image'), authenticateToken, checkRole('admin'), async (req, res) => {
+    console.log('Requête reçue pour la création de film');
     const movieData = req.body;
     const userId = req.user.id;
 
     try {
-        const [result, fields] = await Movie.create(movieData, userId);
+        const image = req.file ? req.file.filename : null;
+        if (!image) {
+            return res.status(400).json({ message: 'Image is required' });
+        }
+
+        // Assure que toutes les données du film sont fournies
+        const { title, description, rating, director, trailer, genre, duration, origin, age, top } = movieData;
+        if (!title || !description || !rating || !director || !trailer || !genre || !duration || !origin || !age || top === undefined) {
+            return res.status(400).json({ message: 'All fields are required' });
+        }
+
+        console.log("Données du film envoyées :", { ...movieData, image, userId });
+
+        const [result, fields] = await Movie.create({ ...movieData, image, userId });
         res.status(201).json({ message: 'Film créé avec succès.', movieId: result.insertId });
     } catch (error) {
-        console.error(error);
+        console.error('Erreur lors de la création du film:', error);
         res.status(500).json({ message: 'Erreur lors de la création du film.' });
     }
 });
 
 
-router.put('/:id', authenticateToken, checkRole('admin'), async (req, res) => {
+// movieRouter.js
+router.put('/:id', upload.single('image'), authenticateToken, checkRole('admin'), async (req, res) => {
     const movieId = req.params.id;
     const movieData = req.body;
+    const image = req.file ? req.file.filename : null;
+    const userId = req.user.id;
 
     try {
-        await Movie.update(movieId, movieData);
+
+        await Movie.update(movieId, movieData, userId, image);
         res.json({ message: 'Film mis à jour avec succès.' });
     } catch (error) {
-        console.error(error);
+        console.error('Erreur lors de la mise à jour du film:', error);
         res.status(500).json({ message: 'Erreur lors de la mise à jour du film.' });
     }
 });
+
+
 
 
 router.delete('/:id', authenticateToken, checkRole('admin'), async (req, res) => {

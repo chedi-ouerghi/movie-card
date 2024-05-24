@@ -1,13 +1,26 @@
+
+.section_feedback-watcher {
+    position: relative;
+    top: 15%;
+    height: 100%;
+    width: 35%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
 .feedback-watcher {
-    width: 60%;
+    width: 80%;
     margin: 20px auto;
     padding: 20px;
     border: 1px solid #ddd;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     overflow-y: auto;
+    background: #fef5f50a;
     height: 74vh;
-}
+  }
 
 .feedback-watcher h2 {
   text-align: center;

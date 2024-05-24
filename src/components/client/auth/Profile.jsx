@@ -3,38 +3,40 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './profile.css';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../../services/AuthContext';
 
 const Profile = () => {
   const [user, setUser] = useState(null);
   const [error, setError] = useState('');
   const navigate = useNavigate();
-  const token = localStorage.getItem('token'); // Récupérer le token depuis le localStorage
+  const { token, role } = useAuth();
 
   useEffect(() => {
     if (!token) {
-      // Rediriger vers la page de connexion si aucun token n'est présent
       navigate('/login');
     } else {
       const fetchProfile = async () => {
         try {
-          const response = await axios.get('http://localhost:5320/api/auth/profile/:id', {
+          const response = await axios.get('http://localhost:5320/api/auth/profile', {
             headers: {
               Authorization: `Bearer ${token}`,
             },
           });
-
           setUser(response.data);
         } catch (err) {
           setError(err.response.data.message);
         }
       };
-
       fetchProfile();
     }
   }, [token, navigate]);
 
   const handleModifyProfile = () => {
-    navigate('/admin/');
+    if (role === 'admin') {
+      navigate('/admin');
+    } else {
+      setError('Vous n\'avez pas l\'autorisation d\'accéder à cette page.');
+    }
   };
 
   if (!user) {

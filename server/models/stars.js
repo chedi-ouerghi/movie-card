@@ -10,21 +10,19 @@ class Stars {
         return db.execute('SELECT * FROM stars WHERE id = ?', [id]);
     }
 
-    static create(star) {
-        const { name, date_of_birth, country, image, description } = star;
-        if (!name || !date_of_birth || !country || !image) {
-            return Promise.reject(new Error('Veuillez fournir toutes les informations nécessaires pour créer une star.'));
-        }
-
-        const formattedDateOfBirth = new Date(date_of_birth).toISOString().split('T')[0];
-        return db.execute('CALL InsertStar(?, ?, ?, ?, ?)', [name, formattedDateOfBirth, country, image, description]);
+static create(starData) {
+    const { name, date_of_birth, country, image, description } = starData;
+    if (!name || !date_of_birth || !country || !image || !description) {
+        return Promise.reject(new Error('Veuillez fournir toutes les informations nécessaires pour créer une star.'));
     }
 
-   static update(id, star) {
-        const { name, date_of_birth, country, image, description } = star;
+    const formattedDateOfBirth = new Date(date_of_birth).toISOString().split('T')[0];
+    return db.execute('CALL InsertStar(?, ?, ?, ?, ?)', [name, formattedDateOfBirth, country, image, description]);
+}
 
-        // Formatez la date au format YYYY-MM-DD HH:mm:ss pour correspondre au format de la base de données
-        const formattedDateOfBirth = moment(date_of_birth).format('YYYY-MM-DD HH:mm:ss');
+    static update(id, starData) {
+        const { name, date_of_birth, country, image, description } = starData;
+        const formattedDateOfBirth = moment(date_of_birth).format('YYYY-MM-DD');
 
         return db.execute('CALL UpdateStar(?, ?, ?, ?, ?, ?)', [id, name, formattedDateOfBirth, country, image, description]);
     }

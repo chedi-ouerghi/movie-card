@@ -4,16 +4,18 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { Input, message } from 'antd';
 import "../auth/auth.css";
+import { useAuth } from '../../../services/AuthContext';
 
-const Login = ({ setToken }) => {
+const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
-  
+  const { login } = useAuth();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     try {
       const response = await axios.post('http://localhost:5320/api/auth/login', {
         email,
@@ -21,11 +23,9 @@ const Login = ({ setToken }) => {
       });
 
       const tokenValue = response.data.token;
-      setToken(tokenValue);
+      login(tokenValue);
       message.success('Login successful');
-      localStorage.setItem('token', tokenValue);
       navigate('/profile');
-      window.location.reload(); // Rafraîchissement de la page après la navigation
     } catch (err) {
       setError(err.response.data.message);
     }
@@ -38,7 +38,7 @@ const Login = ({ setToken }) => {
         <div className="shape" />
       </div>
       {error && <div className="error">{error}</div>}
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className='form-login'>
         <div className='div1_form'>
           <label className='label_login'>Email:</label>
           <Input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />

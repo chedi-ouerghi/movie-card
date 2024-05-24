@@ -78,59 +78,6 @@ display: inline;
 
 }
 
-@media (max-width:600px) {
-  .nav > .nav-links {
-    position: relative; /* Modifier la position en relative */
-    display: block;
-    width: 100%;
-    background-color: #333;
-    height: auto; /* Au lieu de 0px */
-    transition: all 0.3s ease-in;
-    overflow-y: hidden;
-    /* Supprimer les valeurs top et left */
-  }
-
-  .nav > #nav-check:not(:checked) ~ .nav-links {
-    height: 0px;
-    overflow: hidden; /* Ajouter overflow pour masquer le contenu */
-  }
-
-  .nav > #nav-check:checked ~ .nav-links {
-    height: auto; /* Au lieu de calc(100vh - 50px) */
-    overflow-y: auto;
-  }
-
-  .nav > .nav-links > a {
-    display: block;
-    width: 100%;
-  }
-
-  .search-input {
-    height: 5vh;
-    width: 55%;
-    position: relative;
-  }
-
-  .nav > .nav-btn > label {
-    display: inline-block;
-    width: 50px;
-    height: 50px;
-    padding: 13px;
-  }
-  .nav > .nav-btn > label:hover,.nav  #nav-check:checked ~ .nav-btn > label {
-    background-color: rgba(0, 0, 0, 0.3);
-  }
-  .nav > .nav-btn > label > span {
-    display: block;
-    width: 25px;
-    height: 10px;
-    border-top: 2px solid #eee;
-  }
-  .nav > .nav-btn {
-    display: block;
-}
- 
-}
 
 .search-input{
   height: 5vh;

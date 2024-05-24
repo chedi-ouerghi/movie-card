@@ -3,8 +3,9 @@
 .list_div_movies {
     padding: 20px;
     /* background: linear-gradient(to bottom, #ffefba, #ffffff); */
-     background:  linear-gradient(to bottom, rgba(255, 106, 0, 0.732), rgba(3, 32, 5, 0.732)), url('C:\Users\chedi\movie-card\public\image.jpg');
-    overflow-y: auto;
+     /* background:  linear-gradient(to bottom, rgba(255, 106, 0, 0.732), rgba(3, 32, 5, 0.732)), url('C:\Users\chedi\movie-card\public\image.jpg'); */
+    background: #000;
+     overflow-y: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -26,7 +27,9 @@
   border-radius: 4px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.3s ease;
-  background: #fff;
+  background: #000;
+  color: #fff;
+      margin-top: 0 !important;
 }
 
 .search-input:focus {
@@ -44,16 +47,17 @@
     gap: 10px;
     justify-content: flex-start;
     width: 91rem;
+    margin: 1% 0;
 }
 
 .movie-card_movies {
-    background: #fff;
+    /* background: #fff; */
     border: 1px solid #ddd;
     border-radius: 8px;
-    padding: 20px;
+    padding: 2px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    width: 23%;
+    width: 19%;
     height: 55vh;
 }
 
@@ -207,3 +211,80 @@ margin-bottom: 15px;
 } */
 
 
+
+.title_link_movies_home{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5%;
+    margin-bottom: 10px;
+}
+
+.title_link_movies_home > a{
+  font-size: 1.5em;
+  color: #FFD600;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.title_link_movies_home > a:hover{
+  color: #0D47A1;
+}
+
+
+.see-all-button {
+  padding: 10px 20px;
+  margin-top: 0;
+  text-decoration: underline;
+  font-size: 13px;
+  color: #0D47A1;
+  /* background: linear-gradient(90deg, #FFD600 0%, #ffd5008d 100%); */
+  border: none;
+  border-radius: 25px;
+  width: 100%;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.see-all-button:hover {
+  background-color: #ffcc00;
+  color: #fff;
+  border: 2px solid #0D47A1 ;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.groupe_filtre_button{
+    width: 31%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5%;
+    color: #FFD600;
+}
+
+.genre_div_style{
+border-radius: 25px;
+    border: 1px solid #fff;
+    width: auto;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.genre_div_style:hover{
+  border: 1px solid #FFD600;
+  background-color: #0D47A1;
+  color: #FFD600;
+  cursor: pointer;
+}
+
+.genre_div_style:active{
+  border: 1px solid #FFD600;
+  background-color: #FFD600;
+  color: #0D47A1;
+  cursor: pointer;
+}

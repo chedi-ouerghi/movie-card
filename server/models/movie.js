@@ -16,25 +16,52 @@ class Movie {
         `;
         return db.execute(sql, [id]);
     }
+// Movie.js
+static async create(movieData) {
+    try {
+        const { title, description, image, rating, director, trailer, top, genre, duration, origin, age } = movieData;
 
-    static async create(movieData, userId) {
-        try {
-            const { title, description, image, rating, director, trailer, top, genre, duration, origin, age } = movieData;
-            const [result, fields] = await db.execute('CALL InsertMovie(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
-                [userId, title, description, image, rating, director, trailer, top, genre, duration, origin, age]);
-            return [result, fields];
-        } catch (error) {
-            throw error;
+        if (!image) {
+            throw new Error("Image is required");
         }
+
+        const topValue = top === 'true' || top === '1' ? 1 : 0;
+
+        // Assure que toutes les valeurs sont définies
+        const values = [title, description, image, rating, director, trailer, topValue, genre, duration, origin, age];
+        for (const value of values) {
+            if (value === undefined) {
+                throw new Error("All parameters must be provided");
+            }
+        }
+
+        const [result, fields] = await db.execute('CALL InsertMovie(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', 
+            [movieData.userId, title, description, image, rating, director, trailer, topValue, genre, duration, origin, age]);
+
+        return [result, fields];
+    } catch (error) {
+        throw error;
     }
-
-static update(id, movie) {
-    const { user_id, title, description, image, rating, director, trailer, top, genre, duration, origin, age } = movie;
-    const values = [id, user_id, title, description, image, rating, director, trailer, top, genre, duration, origin, age];
-    const definedValues = values.map(value => (value !== undefined ? value : null));
-
-    return db.execute('CALL UpdateMovie(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', definedValues);
 }
+
+
+// Movie.js
+static async update(id, movieData, userId, image) {
+    try {
+        const { title, description, rating, director, trailer, top, genre, duration, origin, age } = movieData;
+
+        const imageValue = image || null;
+        const topValue = top === 'true' || top === '1' ? 1 : 0;
+
+        const [result, fields] = await db.execute('CALL UpdateMovie(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', 
+            [id, userId, title, description, imageValue, rating, director, trailer, topValue, genre, duration, origin, age]);
+
+        return [result, fields];
+    } catch (error) {
+        throw error;
+    }
+}
+
 
 
     static delete(id) {

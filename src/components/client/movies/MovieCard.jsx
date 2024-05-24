@@ -23,9 +23,9 @@ const MovieCard = ({ movie, overlayPosition }) => {
 
 
   return (
-    <div className="movie-card">
+    <div className="movie-card_component">
       <div className="card-img">
-        <img src="/image.jpg" alt={movie.title} className="blur-image" />
+        <img src={`http://localhost:5320/uploads/movies/${movie.image}`}  alt={movie.title} className="blur-image" />
         <div className="card-overlay">
           <div className="card-title">{movie.title}</div>
           <div className="card-director">
