@@ -14,11 +14,11 @@
     width: 80%;
     margin: 20px auto;
     padding: 20px;
-    border: 1px solid #ddd;
+    /* border: 1px solid #ddd; */
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     overflow-y: auto;
-    background: #fef5f50a;
+    /* background: #fef5f50a; */
     height: 74vh;
   }
 

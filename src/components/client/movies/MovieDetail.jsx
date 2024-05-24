@@ -6,6 +6,7 @@ import ReactStars from 'react-rating-stars-component';
 import axios from 'axios';
 import './movieDetails.css';
 
+
 const MovieDetail = () => {
   const { id } = useParams();
   const [movie, setMovie] = useState(null);

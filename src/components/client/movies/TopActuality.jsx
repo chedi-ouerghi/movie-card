@@ -3,6 +3,7 @@ import './TopActuality.css'
 import ReactStars from 'react-rating-stars-component';
 
 
+
 const TopActuality = () => {
   const [movies, setMovies] = useState([]);
 

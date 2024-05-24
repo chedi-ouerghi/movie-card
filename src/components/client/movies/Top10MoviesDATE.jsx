@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
+
 const Top10MoviesDATE = () => {
   const [topRatedMovies, setTopRatedMovies] = useState([]);
 
